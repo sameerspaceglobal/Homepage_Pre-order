@@ -1,0 +1,2293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>SPACE — Premium Tech Accessories</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <!-- Material Symbols font replaced with inline SVGs for Figma compatibility -->
+  <style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --pr:#021688;--prd:#000d5a;--ac:#ff7200;
+    --sf:#f5f5f7;--ink:#1d1d1f;--mu:#6b6b80;
+    --ol:#e0e0ec;--ols:#c8c8d8;
+    --fd:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
+    --rsm:6px;--rmd:12px;--rlg:16px;--rf:999px;
+    --hh:56px;
+  }
+  html{scroll-behavior:smooth}
+  html,body{width:100%;max-width:100%}
+  body{font-family:var(--fd);background:#fff;color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;min-width:0;margin:0;padding:0}
+  a{text-decoration:none;color:inherit}
+  img{display:block;max-width:100%;height:auto}
+  ::-webkit-scrollbar{width:4px}
+  ::-webkit-scrollbar-thumb{background:var(--ols);border-radius:3px}
+  /* .ms replaced by inline SVG */
+  /* ══════════════════════════════
+     HEADER
+  ══════════════════════════════ */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:300;
+    height:var(--hh);
+    background:rgba(2,22,136,.92);
+    backdrop-filter:blur(24px) saturate(200%);
+    -webkit-backdrop-filter:blur(24px) saturate(200%);
+    display:flex;align-items:center;
+    padding:0 clamp(12px,2vw,32px);
+    border-bottom:1px solid rgba(255,255,255,.1);
+    gap:0;
+  }
+  .logo-txt{
+    font-weight:800;font-size:1.1rem;
+    color:#fff;letter-spacing:.08em;
+    text-decoration:none;flex-shrink:0;
+  }
+  /* Mobile: logo absolutely centered, desktop: normal flex */
+  @media(max-width:767px){
+    .logo-txt{
+      position:absolute;left:50%;transform:translateX(-50%);
+      font-size:1rem;
+    }
+  }
+  /* Desktop nav — centred via flex-grow trick */
+  /* ── DESKTOP NAV + DROPDOWNS ── */
+  .dnav{
+    display:none;align-items:center;gap:0;
+    flex:1;justify-content:center;
+    height:var(--hh);
+  }
+  @media(min-width:768px){.dnav{display:flex}}
+
+  .nav-item{
+    position:relative;
+    display:flex;align-items:center;height:100%;
+  }
+  .nav-item > a{
+    font-size:.66rem;font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;color:rgba(255,255,255,.72);
+    transition:color .22s;white-space:nowrap;
+    padding:0 14px;height:100%;
+    display:flex;align-items:center;gap:4px;
+    text-decoration:none;
+    position:relative;
+  }
+  /* Apple-style underline indicator */
+  .nav-item > a::after{
+    content:'';
+    position:absolute;bottom:0;left:14px;right:14px;
+    height:2px;background:#fff;border-radius:1px;
+    transform:scaleX(0);transform-origin:center;
+    transition:transform .28s cubic-bezier(.4,0,.2,1),opacity .28s;
+    opacity:0;
+  }
+  .nav-item:hover > a::after,.nav-item > a.on::after{
+    transform:scaleX(1);opacity:1;
+  }
+  .nav-item > a:hover,
+  .nav-item > a.on,
+  .nav-item:hover > a{color:#fff}
+  .nav-item > a .nav-arrow{
+    font-size:13px;
+    transition:transform .28s cubic-bezier(.4,0,.2,1);
+    /* font-family removed */
+    font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20;
+  }
+  .nav-item:hover > a .nav-arrow{transform:rotate(180deg)}
+
+  /* ── Apple.com-style dropdown — full-width panel, content centered ── */
+  .nav-drop,.nav-drop.wide,.nav-mega{
+    position:fixed;left:0;right:0;top:var(--hh);
+    background:rgba(249,249,251,.98);
+    backdrop-filter:blur(20px) saturate(180%);
+    -webkit-backdrop-filter:blur(20px) saturate(180%);
+    box-shadow:0 4px 24px rgba(0,0,0,.07),0 1px 0 rgba(0,0,0,.06);
+    border-top:1px solid rgba(0,0,0,.07);
+    z-index:400;
+    opacity:0;pointer-events:none;
+    transform:translateY(-8px);
+    transition:opacity .25s cubic-bezier(.4,0,.2,1),transform .28s cubic-bezier(.4,0,.2,1);
+    /* Panel fills viewport — use flex to center the inner row */
+    padding:36px 0 32px;
+    display:flex;justify-content:center;align-items:flex-start;
+    grid-template-columns:unset;min-width:unset;
+    overflow:hidden;
+  }
+  .nav-item:hover .nav-drop,
+  .nav-item:hover .nav-drop.wide,
+  .nav-item:hover .nav-mega{
+    opacity:1;pointer-events:all;transform:translateY(0);
+  }
+  /* Columns: fixed width per column, gap between them — never overflow */
+  .nav-drop>.nc,.nav-drop.wide>.nc,.nav-mega>.nc{
+    flex:0 0 auto;
+    width:160px;
+    padding:0 28px;
+    border-right:1px solid rgba(0,0,0,.07);
+    box-sizing:content-box;
+  }
+  .nav-drop>.nc:first-child,
+  .nav-drop.wide>.nc:first-child,
+  .nav-mega>.nc:first-child{padding-left:0}
+  .nav-drop>.nc:last-child,
+  .nav-drop.wide>.nc:last-child,
+  .nav-mega>.nc:last-child{border-right:none;padding-right:0}
+
+  /* Category heading — small caps, brand blue */
+  .nh{
+    display:block;
+    font-size:.58rem;font-weight:800;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--pr);
+    font-family:var(--fd);
+    margin-bottom:16px;
+    letter-spacing:.18em;
+  }
+
+  /* Sub-links — generous line height, natural casing option, hover blue */
+  .nl{
+    display:block;
+    font-size:.72rem;font-weight:500;color:#1d1d1f;
+    font-family:var(--fd);
+    padding:6px 0;text-decoration:none;
+    letter-spacing:.05em;white-space:nowrap;
+    text-transform:uppercase;
+    transition:color .14s;
+    line-height:1.4;
+    border-bottom:1px solid #f4f4f8;
+  }
+  .nl:last-child{border-bottom:none}
+  .nl:hover{color:var(--pr)}
+
+  /* Hide legacy selectors */
+  .nd-head,.dl,.drop-col-title,.mega-col-title{display:none}
+
+  /* Icon buttons */
+  .hdr-icons{display:flex;align-items:center;gap:2px;flex-shrink:0;margin-left:auto}
+  .ib{
+    background:none;border:none;cursor:pointer;color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    width:36px;height:36px;border-radius:var(--rsm);
+    transition:opacity .2s;position:relative;flex-shrink:0;
+  }
+  .ib:hover{opacity:.7}
+  .ib .ms{font-size:20px}
+  @media(max-width:767px){.ib{width:32px;height:32px}.ib .ms{font-size:19px}}
+  .cb{
+    position:absolute;top:4px;right:4px;
+    width:14px;height:14px;background:var(--ac);
+    border-radius:50%;font-size:8px;font-weight:700;
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    pointer-events:none;
+  }
+  /* Account icon — hide on mobile */
+  .ib-acct{display:flex}
+  /* Burger — hide on desktop */
+  .ib-burger{display:flex;order:-1;margin-right:0;margin-left:0}
+  @media(min-width:768px){.ib-burger{display:none!important}}
+  /* Bolder burger icon */
+  .ib-burger .ms{
+    font-size:24px!important;
+    font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24!important;
+  }
+
+  /* Mobile drawer */
+
+  /* ── Mobile drill-down nav ── */
+  /* Dropdown plain heading */
+  .nd-head{
+    font-size:.78rem;font-weight:900;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--pr);
+    padding-bottom:7px;margin-bottom:6px;
+    border-bottom:1.5px solid #eef0f8;
+    font-family:var(--fd);
+    white-space:nowrap;
+  }
+  /* Plain link — no icon */
+  .dl{
+    display:block;
+    font-size:.68rem;font-weight:500;color:#1d1d1f;
+    padding:7px 0;text-decoration:none;
+    transition:color .13s,padding-left .15s;
+    letter-spacing:.02em;
+    white-space:nowrap;
+    font-family:var(--fd);
+  }
+  .dl:hover{color:var(--pr);padding-left:4px}
+
+  .mdr{
+    position:fixed;
+    top:var(--hh);left:0;right:0;bottom:0;
+    z-index:290;background:var(--pr);
+    overflow:hidden;
+    /* Use visibility+opacity so transition actually fires */
+    visibility:hidden;
+    opacity:0;
+    transform:translateY(-10px);
+    transition:
+      visibility 0s linear .28s,
+      opacity .28s cubic-bezier(.4,0,.2,1),
+      transform .28s cubic-bezier(.4,0,.2,1);
+    pointer-events:none;
+  }
+  .mdr.open{
+    visibility:visible;
+    opacity:1;
+    transform:translateY(0);
+    transition:
+      visibility 0s linear 0s,
+      opacity .28s cubic-bezier(.4,0,.2,1),
+      transform .28s cubic-bezier(.4,0,.2,1);
+    pointer-events:all;
+  }
+  /* Panel container — slides horizontally */
+  .mob-panels{
+    display:flex;
+    width:300%;
+    height:100%;
+    will-change:transform;
+    transition:transform .36s cubic-bezier(.4,0,.2,1);
+  }
+  .mob-panels.show-l2{transform:translate3d(-33.333%,0,0)}
+  .mob-panels.show-l3{transform:translate3d(-66.666%,0,0)}
+  .mob-panel{
+    width:33.333%;
+    flex-shrink:0;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior:contain;
+    padding:8px 0 40px;
+    display:flex;flex-direction:column;
+  }
+  @keyframes mobFadeIn{
+    from{opacity:0;transform:translate3d(20px,0,0)}
+    to{opacity:1;transform:translate3d(0,0,0)}
+  }
+  @keyframes mobFadeUp{
+    from{opacity:0;transform:translate3d(0,10px,0)}
+    to{opacity:1;transform:translate3d(0,0,0)}
+  }
+  /* Animation handled by JS mobAnimate() */
+  /* Stagger handled via JS mobAnimate() */
+  /* L1 item */
+  .ml{
+    display:flex;justify-content:space-between;align-items:center;
+    cursor:pointer;padding:15px 24px;
+    font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(255,255,255,.82);
+    border-bottom:1px solid rgba(255,255,255,.06);
+    background:none;border-left:none;border-right:none;border-top:none;
+    width:100%;text-align:left;font-family:var(--fd);
+    -webkit-tap-highlight-color:transparent;
+    transition:background .18s;
+  }
+  .ml:active{background:rgba(255,255,255,.07)}
+  .mob-arr{
+    font-size:16px;color:rgba(255,255,255,.4);line-height:1;
+    /* font-family removed */
+    font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
+  }
+  /* L2 panel header (Back button + title) */
+  .mob-panel-head{
+    display:flex;align-items:center;gap:10px;
+    padding:14px 24px 10px;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    margin-bottom:4px;
+  }
+  .mob-back{
+    background:none;border:none;cursor:pointer;
+    color:rgba(255,255,255,.6);/* font-family removed */
+    font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
+    font-size:20px;padding:0;line-height:1;
+    -webkit-tap-highlight-color:transparent;
+    transition:color .15s;
+  }
+  .mob-back:hover{color:#fff}
+  .mob-panel-title{
+    font-size:.72rem;font-weight:800;letter-spacing:.14em;
+    text-transform:uppercase;color:rgba(255,255,255,.5);
+  }
+  /* L2 group heading */
+  .mob-grp-head{
+    font-size:.6rem;font-weight:800;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--ac);
+    padding:14px 24px 5px;
+  }
+  /* L2 link item */
+  .ml-sub{
+    display:block;font-size:.78rem;font-weight:500;
+    color:rgba(255,255,255,.75);
+    padding:12px 24px;text-decoration:none;
+    border-bottom:1px solid rgba(255,255,255,.04);
+    -webkit-tap-highlight-color:transparent;
+    transition:color .15s,background .15s;
+  }
+  .ml-sub:hover,.ml-sub:active{color:#fff;background:rgba(255,255,255,.05)}
+  .ml-sub:last-child{border-bottom:none}
+
+
+  /* ══════════════════════════════
+     HERO BANNERS
+     15vh compact strips, 5px gap
+  ══════════════════════════════ */
+  .hero-wrap{
+    margin-top:var(--hh);
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+    background:#ffffff; /* gap colour */
+  }
+  .hero{
+    width:100%;
+    height:clamp(320px,60vh,860px);
+    display:flex;
+    flex-direction:column;   /* text top, image bottom */
+    align-items:center;
+    background:#f5f5f7;
+    overflow:hidden;
+    position:relative;
+    flex-shrink:0;
+  }
+  /* Text — top center */
+  .hero-txt{
+    flex-shrink:0;
+    width:100%;
+    max-width:680px;
+    text-align:center;
+    padding:clamp(28px,4.5vh,52px) clamp(20px,5vw,80px) clamp(14px,2vh,22px);
+    position:relative;z-index:2;
+  }
+  .hero-title{
+    font-size:clamp(1rem,1.8vw,2rem);
+    font-weight:800;letter-spacing:-.03em;line-height:1.1;
+    color:var(--ink);margin-bottom:5px;
+    text-transform:uppercase;
+  }
+  .hero-sub{
+    font-size:clamp(.62rem,.85vw,.78rem);
+    font-weight:500;color:#1d1d1f;
+    margin-bottom:clamp(12px,2vh,18px);line-height:1.4;
+  }
+  .h-btn{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:clamp(10px,1vw,14px) clamp(26px,2vw,36px);border-radius:var(--rf);
+    background:var(--pr);color:#fff;
+    font-family:var(--fd);font-size:.76rem;font-weight:700;
+    letter-spacing:.05em;text-transform:uppercase;
+    border:none;cursor:pointer;
+    transition:background .18s,transform .12s;
+    white-space:nowrap;
+  }
+  .h-btn:hover{background:var(--prd);transform:scale(1.03)}
+  .h-btn .ms{font-size:14px}
+  /* Image — fills remaining height, sits at bottom */
+  .hero-img{
+    flex:1;
+    width:100%;
+    min-height:0;
+    display:flex;align-items:flex-end;justify-content:center;
+    padding:0 clamp(24px,6vw,100px);
+    overflow:hidden;
+    position:relative;z-index:2;
+  }
+  .hero-img img{
+    display:block;
+    height:100%;width:auto;
+    max-width:min(520px,80%);
+    object-fit:contain;object-position:bottom center;
+    transition:transform .4s ease;
+    filter:drop-shadow(0 10px 28px rgba(2,22,136,.12));
+  }
+  .hero:hover .hero-img img{transform:scale(1.025) translateY(-4px)}
+  /* Mobile adjustments */
+  @media(max-width:599px){
+    .hero{height:clamp(280px,55vh,520px)}
+    .hero-txt{padding:clamp(20px,4vw,32px) 20px clamp(10px,2vw,16px)}
+    .hero-title{font-size:clamp(.85rem,4vw,1.15rem)}
+    .hero-sub{font-size:clamp(.6rem,2.5vw,.72rem);margin-bottom:12px}
+    .h-btn{font-size:.68rem;padding:8px 20px}
+    .hero-img{padding:0 20px}
+    .hero-img img{max-width:min(320px,82%)}
+  }
+  @media(max-width:399px){
+    .hero{height:clamp(260px,50vh,480px)}
+    .hero-title{font-size:clamp(.8rem,3.6vw,1rem)}
+  }
+  @media(min-width:1600px){
+    .hero{height:clamp(520px,62vh,900px)}
+    .hero-title{font-size:clamp(1.4rem,1.8vw,2.4rem)}
+    .hero-sub{font-size:clamp(.65rem,.8vw,.88rem)}
+  }
+  @media(min-width:2000px){
+    .hero{height:clamp(600px,65vh,1000px)}
+    .hero-title{font-size:clamp(1.6rem,2vw,2.8rem)}
+  }
+
+  /* ══════════════════════════════
+     SHARED SECTION
+  ══════════════════════════════ */
+  .sec{padding:28px 0;background:#fff}
+  .sec.pale{background:var(--sf)}
+  @media(min-width:640px){.sec{padding:36px 0}}
+  @media(min-width:1024px){.sec{padding:48px 0}}
+  @media(min-width:1600px){.sec{padding:56px 0}}
+  @media(min-width:2000px){.sec{padding:64px 0}}
+  .wrap{max-width:100%;margin:0 auto;padding:0 clamp(12px,1.5vw,28px)}
+  .sh{
+    display:flex;align-items:center;
+    justify-content:space-between;
+    gap:10px;margin-bottom:18px;flex-wrap:nowrap;
+  }
+
+  @media(min-width:640px){.sh{margin-bottom:24px}}
+  .sh-left{min-width:0}
+  .sh-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+  .sec .sr{justify-content:center}
+  .sh-eye{
+    font-size:.54rem;font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ac);
+    display:flex;align-items:center;gap:5px;margin-bottom:3px;
+  }
+  .sh-eye::before{content:'';width:10px;height:1.5px;background:var(--ac)}
+  .sh-title{
+    font-size:clamp(.85rem,1.4vw,2.4rem);font-weight:800;
+    letter-spacing:-.02em;text-transform:uppercase;
+    line-height:1.08;color:var(--pr);white-space:nowrap;
+  }
+  .sa{
+    font-size:.6rem;font-weight:700;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--pr);
+    white-space:nowrap;display:flex;align-items:center;gap:3px;
+    transition:gap .15s;flex-shrink:0;
+  }
+  .sa:hover{gap:6px}
+  .sa .ms{font-size:12px}
+
+  /* ══════════════════════════════
+     CATEGORY TILES
+  ══════════════════════════════ */
+  .catsec{padding:28px 0;background:#fff}
+  @media(min-width:640px){.catsec{padding:36px 0}}
+  @media(min-width:1024px){.catsec{padding:48px 0}}
+  @media(min-width:1600px){.catsec{padding:56px 0}}
+  .cstrip{
+    display:grid;
+    grid-template-columns:repeat(6,minmax(0,1fr));
+    gap:clamp(8px,1vw,14px);
+  }
+  @media(max-width:767px){.cstrip{grid-template-columns:repeat(3,1fr);gap:6px}}
+  @media(max-width:359px){.cstrip{grid-template-columns:repeat(2,1fr)}}
+  .ct{
+    background:#fff;border:1.5px solid var(--ol);
+    border-radius:var(--rlg);
+    padding:14px 8px 12px;
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    cursor:pointer;text-decoration:none;
+    transition:background .22s,border-color .22s,box-shadow .22s,transform .22s;
+    overflow:visible;-webkit-tap-highlight-color:transparent;
+  }
+  .ct:hover{background:var(--pr);border-color:var(--pr);transform:translateY(-3px);box-shadow:0 8px 20px rgba(2,22,136,.2)}
+  .c-ico{
+    width:40px;height:40px;background:#eef0fc;
+    border-radius:10px;display:flex;align-items:center;
+    justify-content:center;transition:background .22s;flex-shrink:0;
+  }
+  .ct:hover .c-ico{background:var(--ac);transition:background .28s cubic-bezier(.4,0,.2,1)}
+  .c-ico .ms{font-size:20px;color:var(--pr);transition:color .28s cubic-bezier(.4,0,.2,1),font-variation-settings .28s,transform .28s}
+  .ct:hover .c-ico .ms{color:#fff;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;transform:scale(1.15)}
+  .c-nm{
+    font-size:clamp(.62rem,.55vw,.78rem);font-weight:800;letter-spacing:.04em;
+    text-transform:uppercase;color:var(--ink);
+    text-align:center;line-height:1.25;transition:color .22s;
+  }
+  .ct:hover .c-nm{color:rgba(255,255,255,.92)}
+
+  /* ══════════════════════════════
+     SCROLL ROWS + PRODUCT CARDS
+     Always 2 cards visible on mobile
+  ══════════════════════════════ */
+  .sw{position:relative;width:100%}
+  .sr{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding-bottom:2px;
+    width:100%;max-width:100%;
+    box-sizing:border-box;
+    overscroll-behavior-x:contain;
+  }
+  .sr::-webkit-scrollbar{display:none}
+  /* 2 cards always on smallest screens */
+  .sr .pc{
+    flex:0 0 calc(50% - 4px);
+    scroll-snap-align:start;
+    min-width:0;
+    box-sizing:border-box;
+  }
+  @media(min-width:520px){.sr .pc{flex:0 0 calc(68% - 4px)}}
+  @media(min-width:640px){.sr .pc{flex:0 0 calc(46% - 8px)}}
+  @media(min-width:768px){.sr .pc{flex:0 0 calc(32% - 9px)}}/* 3 full cards */
+  @media(min-width:1024px){.sr .pc{flex:0 0 calc(23.5% - 9px)}}/* 4 full cards */
+  @media(min-width:1200px){.sr .pc{flex:0 0 calc(17% - 9px)}}/* 6 cards */
+  @media(min-width:1600px){.sr .pc{flex:0 0 calc(14.8% - 9px)}}/* 7 cards */
+  @media(min-width:2000px){.sr .pc{flex:0 0 calc(12.8% - 9px)}}/* 8 cards */
+  @media(min-width:2560px){.sr .pc{flex:0 0 calc(10% - 10px)}}
+  @media(min-width:3440px){.sr .pc{flex:0 0 calc(8.33% - 10px)}}
+  .snav{display:none;align-items:center;gap:6px}
+  @media(min-width:640px){.snav{display:flex}}
+  .sarr{
+    width:30px;height:30px;border-radius:50%;
+    background:#fff;border:1.5px solid var(--ol);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transition:all .2s;color:var(--pr);
+    flex-shrink:0;
+  }
+  .sarr:hover{background:var(--pr);color:#fff;border-color:var(--pr)}
+  .sarr .ms{font-size:15px}
+
+  /* ── Product card — matches category page style ── */
+  .pc{
+    background:#fff;
+    border-radius:20px;
+    -webkit-border-radius:20px;
+    overflow:hidden;
+    -webkit-overflow-scrolling:auto;
+    border:1px solid var(--ol);
+    cursor:pointer;
+    transition:box-shadow .25s,transform .25s,border-color .25s;
+    display:flex;flex-direction:column;
+    position:relative;min-width:0;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .pc:hover{
+    box-shadow:0 12px 48px rgba(2,22,136,.16);
+    transform:translateY(-3px);
+    border-color:rgba(2,22,136,.12);
+  }
+  .pbg{
+    position:absolute;top:7px;left:7px;z-index:2;
+    font-size:.55rem;font-weight:700;letter-spacing:.07em;
+    text-transform:uppercase;padding:2px 7px;border-radius:var(--rf);
+    white-space:nowrap;
+  }
+  .bn{background:var(--ac);color:#fff}
+  .bp{background:var(--pr);color:#fff}
+  .pwl{
+    position:absolute;top:10px;right:10px;z-index:2;
+    width:30px;height:30px;background:#fff;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--ol);cursor:pointer;color:var(--mu);
+    transition:all .2s;box-shadow:0 1px 4px rgba(2,22,136,.06);
+  }
+  .pwl:hover{color:#e53935;border-color:#e53935}
+  .pwl .ms{font-size:15px}
+  /* Image */
+  .pi{
+    width:100%;
+    height:clamp(200px,18vw,240px);
+    min-height:160px;
+    display:flex;align-items:center;justify-content:center;
+    padding:16px;background:#fff;
+    flex-shrink:0;overflow:hidden;
+    box-sizing:border-box;
+  }
+  .pi img{
+    width:auto;max-width:100%;height:100%;
+    max-height:100%;
+    object-fit:contain;mix-blend-mode:multiply;
+    transition:transform .35s ease;
+    display:block;margin:0 auto;
+    -webkit-user-drag:none;
+    flex-shrink:0;
+  }
+  .pc:hover .pi img{transform:scale(1.06)}
+  /* Card body */
+  .pb{padding:10px 11px 12px;display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}
+  .pbrand{font-size:clamp(.48rem,.44vw,.58rem);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mu)}
+  .pname{
+    font-size:clamp(.58rem,.55vw,.74rem);font-weight:700;
+    color:var(--ink);line-height:1.35;
+    text-transform:uppercase;letter-spacing:.01em;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+    overflow:hidden;min-width:0;
+  }
+  @media(max-width:359px){.pname{font-size:.66rem}.pbrand{font-size:.54rem}}
+  /* Spec pills */
+  .pspecs{display:flex;flex-wrap:wrap;gap:4px;margin-top:2px}
+  .pspec{
+    font-size:.56rem;font-weight:600;color:var(--pr);
+    background:#f0f2ff;padding:1px 6px;
+    border-radius:var(--rf);letter-spacing:.04em;
+    font-family:var(--fd);
+  }
+  /* Color dots */
+  .pcols{
+    display:flex;align-items:center;gap:5px;margin-top:4px;
+  }
+  .pcd{
+    width:13px;height:13px;border-radius:50%;cursor:pointer;
+    border:1.5px solid rgba(0,0,0,.1);
+    transition:transform .15s;flex-shrink:0;
+  }
+  .pcd:hover{transform:scale(1.2)}
+  .pcd.on{box-shadow:0 0 0 2px #fff,0 0 0 3.5px var(--pr)}
+  .pcl{display:none}
+  /* Footer */
+  .pft{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-top:auto;padding-top:7px;
+    border-top:1px solid var(--ol);gap:4px;min-width:0;
+  }
+  .pp{font-size:clamp(.64rem,.58vw,.78rem);font-weight:800;color:var(--ink);letter-spacing:-.01em;white-space:nowrap}
+  .pw2{font-size:.58rem;color:var(--mu);text-decoration:line-through;font-weight:400}
+  .pa{
+    width:26px;height:26px;background:var(--pr);
+    border-radius:var(--rmd);display:flex;align-items:center;
+    justify-content:center;border:none;cursor:pointer;color:#fff;
+    transition:background .2s,transform .15s;flex-shrink:0;
+  }
+  .pa:hover{background:var(--prd);transform:scale(1.08)}
+  .pa .ms{font-size:13px}
+  .po-btn{
+    white-space:nowrap;border-radius:var(--rf);
+    padding:0 9px;height:26px;
+    font-size:.56rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    background:transparent;border:1.5px solid var(--pr);color:var(--pr);
+    cursor:pointer;font-family:var(--fd);flex-shrink:0;
+    transition:background .18s,color .18s;
+  }
+  .po-btn:hover{background:var(--pr);color:#fff}
+
+  /* ══════════════════════════════
+     COLLECTIONS & DEALS
+     2 per row desktop, 1 per row mobile
+     Alternating heights for rectangle/box mix
+  ══════════════════════════════ */
+  .ab-section{background:#ffffff;padding:0 7px 7px}
+  .ab-head{max-width:100%;margin:0 auto;padding:36px clamp(12px,1.5vw,28px) 24px;background:#fff}
+  @media(min-width:768px){.ab-head{padding:44px clamp(12px,1.5vw,28px) 32px}}
+  .ab-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+    background:#ffffff;
+  }
+  @media(max-width:599px){.ab-grid{grid-template-columns:1fr}}
+  /* Each banner */
+  .ab{
+    background:#fff;overflow:hidden;position:relative;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;
+    -webkit-tap-highlight-color:transparent;
+  }
+  /* Alternating heights — rectangle/box mix */
+  .ab:nth-child(odd){min-height:380px}
+  .ab:nth-child(even){min-height:300px}
+  @media(min-width:768px){
+    .ab:nth-child(odd){min-height:440px}
+    .ab:nth-child(even){min-height:360px}
+  }
+  @media(min-width:1200px){
+    .ab:nth-child(odd){min-height:500px}
+    .ab:nth-child(even){min-height:400px}
+  }
+  @media(min-width:1600px){
+    .ab:nth-child(odd){min-height:580px}
+    .ab:nth-child(even){min-height:480px}
+  }
+  @media(min-width:2000px){
+    .ab:nth-child(odd){min-height:660px}
+    .ab:nth-child(even){min-height:560px}
+  }
+  @media(max-width:599px){.ab{min-height:260px!important}}
+  .ab:hover .ab-img img{transform:scale(1.04) translateY(-4px)}
+  .ab.sf{background:#f5f5f7}
+  .ab.blue-bg{background:#eef0f8}
+  .ab.cream{background:#faf9f6}
+  .ab.dark{background:#1d1d1f}
+  .ab.silver{background:linear-gradient(145deg,#f0f4f8 0%,#dce6f0 55%,#c8d8e8 100%)}
+  .ab.silver .ab-title{color:#1d1d1f}
+  .ab.silver .ab-sub{color:#555}
+  .ab.silver .ab-btn{background:var(--pr);color:#fff}
+  .ab.silver .ab-btn:hover{background:var(--prd)}
+  .ab.silver .ab-img img{mix-blend-mode:multiply}
+  .ab.crypto{background:linear-gradient(145deg,#f8f6f2 0%,#ede8de 55%,#e2dace 100%)}
+  .ab.crypto .ab-title{color:#1d1d1f}
+  .ab.crypto .ab-sub{color:#555}
+  .ab.crypto .ab-btn{background:var(--pr);color:#fff}
+  .ab.crypto .ab-btn:hover{background:var(--prd)}
+  .ab.crypto .ab-img img{mix-blend-mode:multiply;filter:drop-shadow(0 8px 20px rgba(0,0,0,.12))}
+  .ab.blush{background:linear-gradient(145deg,#fdf5f7 0%,#fce4ec 55%,#f8c8d8 100%)}
+  .ab.blush .ab-title{color:#1d1d1f}
+  .ab.blush .ab-sub{color:#6b4050}
+  .ab.blush .ab-btn{background:var(--pr);color:#fff}
+  .ab.blush .ab-btn:hover{background:var(--prd)}
+  .ab.blush .ab-img img{}
+  .ab.slate{background:linear-gradient(150deg,#2c2c38 0%,#1a1a24 100%)}
+  .ab.slate .ab-title{color:#f5f5f7}
+  .ab.slate .ab-sub{color:rgba(255,255,255,.55)}
+  .ab.slate .ab-btn{background:var(--pr);color:#fff}
+  .ab.slate .ab-btn:hover{background:var(--prd)}
+  .ab.slate .ab-img img{mix-blend-mode:screen;filter:drop-shadow(0 8px 24px rgba(0,0,0,.45))}
+  .ab.ivory{background:linear-gradient(145deg,#fdf8f2 0%,#f5ede0 100%)}
+  .ab.ivory .ab-title{color:#1d1d1f}
+  .ab.ivory .ab-sub{color:#6b6b73}
+  .ab.ivory .ab-btn{background:var(--pr);color:#fff}
+  .ab.ivory .ab-btn:hover{background:var(--prd)}
+  .ab.ivory .ab-img img{mix-blend-mode:multiply}
+  .ab.mint{background:linear-gradient(145deg,#e8f4f0 0%,#d0ece4 100%)}
+  .ab.mint .ab-title{color:#1d1d1f}
+  .ab.mint .ab-sub{color:#555}
+  .ab.mint .ab-btn{background:var(--pr);color:#fff}
+  .ab.mint .ab-btn:hover{background:var(--prd)}
+  .ab.orange-grad{background:linear-gradient(150deg,#fff 0%,#ffe8d0 30%,#ffb266 60%,#ff7200 100%)}
+  .ab.orange-grad .ab-title{color:#1d1d1f}
+  .ab.orange-grad .ab-sub{color:#555}
+  .ab.orange-grad .ab-btn{background:var(--pr);color:#fff}
+  .ab.orange-grad .ab-btn:hover{background:var(--prd)}
+  .ab-txt{
+    flex-shrink:0;text-align:center;
+    padding:clamp(20px,2.5vw,36px) clamp(16px,3vw,44px) clamp(10px,1.2vw,14px);
+    max-width:340px;width:100%;position:relative;z-index:2;
+  }
+  .ab-title{
+    font-size:clamp(1rem,1.6vw,2rem);font-weight:800;
+    letter-spacing:-.03em;line-height:1.1;color:var(--ink);
+    margin-bottom:5px;text-transform:uppercase;
+  }
+  .ab.dark .ab-title{color:#f5f5f7}
+  .ab-sub{
+    font-size:clamp(.6rem,.78vw,.9rem);font-weight:400;
+    color:var(--mu);line-height:1.5;
+    margin-bottom:clamp(12px,1.5vw,18px);
+  }
+  .ab.dark .ab-sub{color:rgba(255,255,255,.5)}
+  .ab-btn{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:8px 18px;border-radius:var(--rf);
+    background:var(--pr);color:#fff;
+    font-family:var(--fd);font-size:.66rem;font-weight:700;
+    letter-spacing:.05em;text-transform:uppercase;
+    border:none;cursor:pointer;transition:background .18s,transform .12s;
+  }
+  .ab-btn:hover{background:var(--prd);transform:scale(1.03)}
+  .ab.dark .ab-btn{background:#fff;color:var(--pr)}
+  .ab.dark .ab-btn:hover{background:#e8e8ed}
+  .ab-btn .ms{font-size:13px}
+  .ab-img{
+    flex:1;width:100%;min-height:0;
+    display:flex;align-items:center;justify-content:center;
+    padding:clamp(12px,2vw,24px);
+    overflow:hidden;
+  }
+  /* Uniform image size: fixed 180px height, constrained width */
+  .ab-img img{
+    display:block;
+    width:auto;
+    height:180px;
+    max-width:200px;
+    object-fit:contain;
+    object-position:center;
+    transition:transform .35s ease;
+    filter:drop-shadow(0 6px 16px rgba(0,0,0,.10));
+  }
+  .ab.dark .ab-img img{filter:drop-shadow(0 8px 24px rgba(0,0,0,.4))}
+  @media(min-width:768px){.ab-img img{height:220px;max-width:240px}}
+  @media(min-width:1200px){.ab-img img{height:260px;max-width:280px}}
+  @media(min-width:1600px){.ab-img img{height:320px;max-width:340px}}
+  @media(min-width:2000px){.ab-img img{height:380px;max-width:400px}}
+  @media(max-width:599px){.ab-img{padding:12px}.ab-img img{height:140px;max-width:160px}}
+
+  /* ══════════════════════════════
+     FOOTER
+  ══════════════════════════════ */
+  footer{
+    background:var(--pr);color:#fff;
+    padding-bottom:env(safe-area-inset-bottom,0px);
+    padding:clamp(40px,5vw,60px) clamp(20px,4vw,60px) clamp(32px,4vw,40px);
+  }
+  .footer-inner{max-width:1920px;margin:0 auto}
+  .footer-grid{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:28px;margin-bottom:32px;
+  }
+  @media(min-width:768px){.footer-grid{grid-template-columns:repeat(4,1fr)}}
+  .footer-col h4{
+    font-family:var(--fd);font-size:.62rem;font-weight:700;
+    letter-spacing:.16em;text-transform:uppercase;
+    color:rgba(255,255,255,.5);margin-bottom:12px;
+  }
+  .footer-col ul{list-style:none}
+  .footer-col ul li{margin-bottom:8px}
+  .footer-col ul li a{
+    font-size:.72rem;color:rgba(255,255,255,.8);
+    text-decoration:none;font-weight:500;
+    transition:color .2s;text-transform:uppercase;letter-spacing:.06em;
+  }
+  .footer-col ul li a:hover{color:#fff}
+  .newsletter-input-row{display:flex;gap:8px;max-width:360px}
+  .newsletter-input{
+    flex:1;padding:9px 14px;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:12px;
+    font-size:.72rem;color:#fff;
+    font-family:var(--fd);outline:none;
+  }
+  .newsletter-input::placeholder{color:rgba(255,255,255,.45)}
+  .newsletter-btn{
+    padding:9px 16px;background:#fff;color:var(--pr);
+    font-family:var(--fd);font-size:.72rem;font-weight:700;
+    letter-spacing:.1em;text-transform:uppercase;
+    border:none;border-radius:12px;cursor:pointer;
+    transition:background .2s;
+  }
+  .newsletter-btn:hover{background:#e8e8f0}
+  .footer-bottom{
+    display:flex;flex-direction:column;gap:20px;
+    padding-top:24px;border-top:1px solid rgba(255,255,255,.1);
+  }
+  @media(min-width:640px){
+    .footer-bottom{flex-direction:row;justify-content:space-between;align-items:center}
+  }
+  .social-row{display:flex;gap:10px}
+  .social-link{
+    width:34px;height:34px;
+    background:rgba(255,255,255,.1);border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;transition:background .2s;
+  }
+  .social-link:hover{background:rgba(255,255,255,.2)}
+  .social-link svg{width:15px;height:15px;fill:currentColor}
+  .footer-legal{
+    font-size:.68rem;color:rgba(255,255,255,.4);font-weight:500;
+    line-height:1.6;text-transform:uppercase;letter-spacing:.06em;
+  }
+  .footer-legal a{color:rgba(255,255,255,.55);text-decoration:none}
+  .footer-legal a:hover{color:#fff}
+  /* footer bottom row — social | copyright | links */
+  .foot-copy{
+    font-size:.72rem;font-weight:500;letter-spacing:.08em;
+    text-transform:uppercase;color:rgba(255,255,255,.35);
+    white-space:nowrap;
+  }
+  .foot-links{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
+  .foot-links a{
+    font-size:.72rem;font-weight:500;letter-spacing:.08em;
+    text-transform:uppercase;color:rgba(255,255,255,.38);
+    text-decoration:none;transition:color .18s;white-space:nowrap;
+  }
+  .foot-links a:hover{color:rgba(255,255,255,.8)}
+
+  /* ══════════════════════════════
+     MOBILE SCROLL HINT
+  ══════════════════════════════ */
+  .scroll-hint{
+    display:none; /* mobile only */
+    align-items:center;justify-content:flex-end;
+    gap:0;margin-top:8px;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .scroll-arrows{display:flex;gap:6px}
+  .scroll-arrow-btn{
+    width:26px;height:26px;border-radius:50%;
+    background:rgba(2,22,136,.1);border:1px solid rgba(2,22,136,.12);
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--pr);
+    transition:background .18s,color .18s;
+    flex-shrink:0;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .scroll-arrow-btn:active{background:var(--pr);color:#fff}
+  .scroll-arrow-btn .ms{font-size:13px}
+  @media(max-width:639px){.scroll-hint{display:flex}}
+
+  /* ══════════════════════════════
+     HERO CAROUSEL
+  ══════════════════════════════ */
+  .hero-carousel{width:100%}
+  .hc-track{
+    display:flex;
+    transition:transform .5s cubic-bezier(.4,0,.2,1);
+    will-change:transform;
+  }
+  .hc-slide{
+    flex:0 0 100%;
+    width:100%;
+  }
+  /* Prev / Next arrow buttons */
+  .hc-btn{
+    position:absolute;top:50%;transform:translateY(-50%);
+    z-index:10;
+    width:clamp(36px,4vw,52px);height:clamp(36px,4vw,52px);
+    border-radius:50%;
+    background:rgba(255,255,255,.82);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    border:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--ink);
+    box-shadow:0 2px 12px rgba(0,0,0,.14);
+    transition:background .18s,transform .15s,box-shadow .18s;
+  }
+  .hc-btn:hover{background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.2);transform:translateY(-50%) scale(1.06)}
+  .hc-btn .ms{font-size:clamp(18px,2vw,24px)}
+  .hc-prev{left:clamp(10px,2vw,28px)}
+  .hc-next{right:clamp(10px,2vw,28px)}
+  /* Dot indicators */
+  .hc-dots{
+    position:absolute;bottom:clamp(10px,2vh,18px);left:50%;
+    transform:translateX(-50%);
+    display:flex;gap:7px;align-items:center;z-index:10;
+  }
+  .hc-dot{
+    width:7px;height:7px;border-radius:50%;
+    background:rgba(0,0,0,.22);border:none;cursor:pointer;
+    transition:all .25s;padding:0;
+  }
+  .hc-dot.on{background:var(--pr);width:20px;border-radius:4px}
+  @media(max-width:599px){
+    .hc-btn{width:32px;height:32px}
+    .hc-btn .ms{font-size:16px}
+    .hc-prev{left:8px}
+    .hc-next{right:8px}
+  }
+
+  /* ══════════════════════════════
+     SCROLL REVEAL
+  ══════════════════════════════ */
+  .r{opacity:0;transform:translateY(10px);transition:opacity .42s ease,transform .42s ease}
+  .r.in{opacity:1;transform:none}
+  .r.d1{transition-delay:.05s}.r.d2{transition-delay:.1s}
+  .r.d3{transition-delay:.15s}.r.d4{transition-delay:.2s}
+  
+  /* ═══════════════════════════════════════════════
+     RESPONSIVE — All screens
+  ═══════════════════════════════════════════════ */
+
+  /* Foldable/very small: 320px */
+  @media(max-width:359px){
+    :root{--hh:52px}
+    .hero-title{font-size:clamp(.8rem,4vw,.95rem)!important}
+    .hero-sub{font-size:.58rem!important}
+    .h-btn{font-size:.6rem;padding:7px 14px}
+    .sr .pc{flex:0 0 calc(85% - 4px)!important}
+    .cstrip{grid-template-columns:repeat(2,1fr)!important}
+    .footer-grid{grid-template-columns:1fr!important}
+    .footer-grid .footer-col:last-child{grid-column:span 1!important}
+  }
+
+  /* Mobile landscape / small tablet: 480px-639px */
+  @media(min-width:480px) and (max-width:639px){
+    .sr .pc{flex:0 0 calc(55% - 6px)!important}
+  }
+
+  /* iPad portrait: 768px */
+  @media(min-width:768px) and (max-width:1023px){
+    .hero-title{font-size:clamp(1rem,2.4vw,1.6rem)!important}
+    .ab-grid{grid-template-columns:1fr 1fr}
+    .sr .pc{flex:0 0 calc(32% - 9px)!important}/* 3 full cards */
+    /* Show 3-4 cards on iPad */
+  }
+
+  /* iPad Pro / small laptop: 1024px-1199px */
+  @media(min-width:1024px) and (max-width:1199px){
+    .sr .pc{flex:0 0 calc(23.5% - 9px)!important}/* 4 full cards */
+    /* 4-5 cards visible */
+  }
+
+  /* Laptop 1200-1439px — 6 cards */
+  @media(min-width:1200px) and (max-width:1439px){
+    .sr .pc{flex:0 0 calc(16% - 9px)!important}
+  }
+
+  /* Standard desktop 1440px-1919px — 6 cards with breathing room */
+  @media(min-width:1440px) and (max-width:1919px){
+    .sr .pc{flex:0 0 calc(15.5% - 9px)!important}
+  }
+
+  /* Large desktop / 4K 1920px+ */
+  @media(min-width:1920px){
+    .sr .pc{flex:0 0 calc(13% - 9px)!important}
+    .wrap{padding:0 clamp(24px,4vw,100px)!important}
+  }
+
+  /* Foldable cover screen (280-380px) */
+  @media(max-width:380px){
+    .hero{height:clamp(240px,50vh,420px)!important}
+    .hdr-icons .ib{width:30px;height:30px}
+    .ab-grid{grid-template-columns:1fr!important}
+  }
+
+  /* Touch device — make tap targets larger */
+  @media(hover:none) and (pointer:coarse){
+    .nl{padding:8px 0!important}
+    .ml{padding:18px 24px!important}
+    .ml-sub{padding:14px 24px!important}
+    .sarr,.scroll-arrow-btn{width:36px!important;height:36px!important}
+  }
+
+  /* Ensure images scale on all screens */
+  img{max-width:100%;height:auto}
+  .pi img{height:100%!important;width:auto!important}
+  .po-item-img img{height:100%!important;width:100%!important}
+
+  /* Prevent horizontal overflow on all screens */
+  body,html{overflow-x:hidden;max-width:100vw}
+
+  /* Safe area for notched phones (iPhone, Android) */
+  @supports(padding:max(0px)){
+    .mdr{bottom:env(safe-area-inset-bottom,0px)}
+    footer{padding-bottom:max(24px,env(safe-area-inset-bottom))}
+  }
+
+  /* ── Inline SVG icon sizing ── */
+  .ms svg,.mob-arr svg{
+    display:block;pointer-events:none;
+  }
+  .ib .ms svg{width:22px;height:22px}
+  .ib-burger .ms svg{width:24px;height:24px}
+  .nav-arrow.ms svg{width:14px;height:14px}
+  .mob-arr svg{width:16px;height:16px}
+  .sarr .ms svg,.scroll-arrow-btn .ms svg{width:18px;height:18px}
+  .pa .ms svg{width:14px;height:14px}
+  .pwl .ms svg{width:16px;height:16px}
+  .sh-title .ms svg,.sa .ms svg{width:14px;height:14px}
+  .mob-back svg{width:20px;height:20px}
+  .c-ico .ms svg{width:20px;height:20px}
+  .hc-btn .ms svg{width:22px;height:22px}
+  .hc-dot-btn .ms svg{width:8px;height:8px}
+  .ab-btn .ms svg{width:16px;height:16px;vertical-align:middle}
+  .social-link svg{width:18px;height:18px}
+  [class*="snav"] .ms svg{width:16px;height:16px}
+
+  /* ── Pre-Order Cart Button ── */
+  .ib-po{position:relative}
+  .po-cb{
+    position:absolute;top:-3px;right:-3px;
+    min-width:16px;height:16px;
+    background:var(--ac);color:#fff;
+    font-size:.52rem;font-weight:800;
+    border-radius:999px;
+    display:flex;align-items:center;justify-content:center;
+    padding:0 4px;
+    font-family:var(--fd);
+    pointer-events:none;
+    border:2px solid rgba(2,22,136,.92);
+    transition:transform .2s;
+  }
+  .ib-po:hover .po-cb{transform:scale(1.1)}
+
+  /* ── Pre-Order Cart Tooltip label (desktop) ── */
+  .ib-po .po-label{
+    position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);
+    background:#1d1d1f;color:#fff;
+    font-size:.48rem;font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;padding:3px 7px;border-radius:4px;
+    white-space:nowrap;pointer-events:none;
+    opacity:0;transition:opacity .18s;
+  }
+  @media(min-width:768px){.ib-po:hover .po-label{opacity:1}}
+
+  /* ── Pre-Order Cart Drawer ── */
+  .po-drawer-overlay{
+    display:none;position:fixed;inset:0;
+    background:rgba(0,0,0,.32);z-index:9998;
+    opacity:0;transition:opacity .28s;
+  }
+  .po-drawer-overlay.open{display:block;opacity:1}
+
+  .po-drawer{
+    position:fixed;top:0;right:0;bottom:0;
+    width:min(420px,95vw);
+    height:100vh;
+    background:#fff;z-index:9999;
+    display:flex;flex-direction:column;
+    transform:translateX(100%);
+    transition:transform .32s cubic-bezier(.4,0,.2,1);
+    box-shadow:-8px 0 40px rgba(0,0,0,.12);
+    overflow:hidden;
+  }
+  .po-drawer.open{transform:translateX(0)}
+
+  /* Drawer head */
+  .po-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 20px 14px;
+    border-bottom:1px solid #f0f0f8;
+    flex-shrink:0;
+  }
+  .po-head-left{display:flex;align-items:center;gap:10px}
+  .po-head-icon{
+    width:34px;height:34px;background:#fff3e8;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .po-head-icon svg{width:18px;height:18px;color:var(--ac);fill:var(--ac)}
+  .po-head-title{
+    font-size:.82rem;font-weight:800;color:var(--ink);
+    letter-spacing:-.01em;
+  }
+  .po-head-count{
+    font-size:.62rem;font-weight:600;color:var(--mu);
+    letter-spacing:.04em;margin-top:1px;
+  }
+  .po-close{
+    width:32px;height:32px;border-radius:50%;
+    background:#f5f5f7;border:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--mu);transition:background .15s,color .15s;
+  }
+  .po-close:hover{background:#e8e8f0;color:var(--ink)}
+  .po-close svg{width:16px;height:16px;fill:currentColor}
+
+  /* Info banner */
+  .po-info{
+    margin:12px 16px;background:#fff8f0;border-radius:10px;
+    padding:10px 14px;display:flex;gap:10px;align-items:flex-start;
+    border:1px solid #ffe0c0;flex-shrink:0;
+  }
+  .po-info svg{width:16px;height:16px;color:var(--ac);fill:var(--ac);flex-shrink:0;margin-top:1px}
+  .po-info-txt{font-size:.65rem;font-weight:500;color:#7a4000;line-height:1.6}
+  .po-info-txt strong{font-weight:800;color:var(--ac)}
+
+  /* Items list */
+  .po-items{flex:1;overflow-y:auto;padding:4px 16px 16px;min-height:0}
+  .po-item{
+    display:flex;gap:12px;align-items:flex-start;
+    padding:14px 0;border-bottom:1px solid #f0f0f8;
+  }
+  .po-item:last-child{border-bottom:none}
+  .po-item-img{
+    width:64px;height:64px;border-radius:10px;
+    background:#f6f6f4;flex-shrink:0;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .po-item-img img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
+  .po-item-info{flex:1;min-width:0}
+  .po-item-brand{font-size:.55rem;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--mu);margin-bottom:2px}
+  .po-item-name{font-size:.72rem;font-weight:600;color:var(--ink);
+    line-height:1.35;margin-bottom:6px;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .po-item-footer{display:flex;align-items:center;justify-content:space-between}
+  .po-item-price{font-size:.76rem;font-weight:800;color:var(--ink)}
+  .po-item-badge{
+    font-size:.5rem;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;background:#fff3e8;color:var(--ac);
+    border:1px solid #ffd0a0;padding:2px 7px;border-radius:999px;
+  }
+  .po-item-remove{
+    background:none;border:none;cursor:pointer;
+    color:#ccc;padding:2px;transition:color .15s;flex-shrink:0;
+    margin-top:2px;
+  }
+  .po-item-remove:hover{color:#e53935}
+  .po-item-remove svg{width:16px;height:16px;fill:currentColor}
+
+  /* Empty state */
+  .po-empty{
+    flex:1;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    padding:40px 24px;text-align:center;gap:12px;
+  }
+  .po-empty-icon{
+    width:64px;height:64px;background:#fff3e8;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:4px;
+  }
+  .po-empty-icon svg{width:32px;height:32px;color:var(--ac);fill:var(--ac)}
+  .po-empty-title{font-size:.88rem;font-weight:800;color:var(--ink)}
+  .po-empty-sub{font-size:.72rem;color:var(--mu);line-height:1.6;max-width:240px}
+
+  /* Footer */
+  .po-footer{
+    padding:16px 20px;border-top:1px solid #f0f0f8;
+    background:#fff;flex-shrink:0;
+  }
+  .po-subtotal{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-bottom:12px;
+  }
+  .po-subtotal-label{font-size:.65rem;font-weight:700;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--mu)}
+  .po-subtotal-price{font-size:1rem;font-weight:800;color:var(--ink)}
+  .po-checkout{
+    width:100%;padding:14px;border-radius:var(--rf);
+    background:var(--ac);color:#fff!important;border:none;cursor:pointer;
+    font-size:.78rem;font-weight:800;letter-spacing:.08em;
+    text-transform:uppercase;font-family:var(--fd);
+    transition:background .18s,transform .12s;
+    display:block;
+  }
+  .po-checkout:hover{background:#e06400;transform:translateY(-1px)}
+  .po-checkout:active{transform:none}
+  .po-note{
+    font-size:.6rem;color:var(--mu);text-align:center;
+    margin-top:10px;line-height:1.6;
+  }
+  /* Failsafe — reveal content even if JS reveal() fails */
+  .no-js .r{opacity:1!important;transform:none!important}
+</style>
+<noscript><style>.r{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <!-- Burger: mobile-left, hidden desktop -->
+  <button class="ib ib-burger" onclick="toggleMenu()" aria-label="Menu" style="order:-1">
+    <span class="ms" id="mico" aria-label="menu" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg></span>
+  </button>
+  <a href="#" class="logo-txt">SPACE</a>
+  <nav class="dnav">
+
+    <!-- Screen Protectors -->
+    <div class="nav-item">
+      <a href="#"><span>Screen Protectors</span><span class="nav-arrow ms" aria-label="expand_more" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg></span></a>
+      <div class="nav-mega">
+        <div class="nc">
+          <span class="nh">iPhone</span>
+          <a href="#" class="nl">iPhone 17 Pro Max</a>
+          <a href="#" class="nl">iPhone 17 Pro</a>
+          <a href="#" class="nl">iPhone 17 Air</a>
+          <a href="#" class="nl">iPhone 17</a>
+          <a href="#" class="nl">iPhone 16 Pro Max</a>
+          <a href="#" class="nl">iPhone 16 Pro</a>
+          <a href="#" class="nl">iPhone 16 Plus</a>
+          <a href="#" class="nl">iPhone 16</a>
+          <a href="#" class="nl">iPhone 15 Series</a>
+          <a href="#" class="nl">Older Models</a>
+        </div>
+        <div class="nc">
+          <span class="nh">iPad</span>
+          <a href="#" class="nl">iPad Pro 13" M5 2025</a>
+          <a href="#" class="nl">iPad Pro 11" M5 2025</a>
+          <a href="#" class="nl">iPad Air M3 2025</a>
+          <a href="#" class="nl">iPad Mini 2024</a>
+          <a href="#" class="nl">iPad 11" A16 2026</a>
+          <a href="#" class="nl">Older iPad Models</a>
+        </div>
+        <div class="nc">
+          <span class="nh">Other Devices</span>
+          <a href="#" class="nl">Apple Watch</a>
+          <a href="#" class="nl">MacBook</a>
+          <a href="#" class="nl">Nintendo Switch</a>
+          <a href="#" class="nl">Samsung Galaxy</a>
+          <a href="#" class="nl">Tesla</a>
+        </div>
+        <div class="nc">
+          <span class="nh">Lens Protectors</span>
+          <a href="#" class="nl">iPhone 17 Pro Max</a>
+          <a href="#" class="nl">iPhone 17 Pro</a>
+          <a href="#" class="nl">iPhone 17 Air</a>
+          <a href="#" class="nl">iPhone 17</a>
+          <a href="#" class="nl">iPhone 16 Pro Max</a>
+          <a href="#" class="nl">iPhone 16 Pro</a>
+          <a href="#" class="nl">iPhone 16 Plus</a>
+          <a href="#" class="nl">iPhone 16</a>
+          <a href="#" class="nl">iPhone 15 Series</a>
+          <a href="#" class="nl">Older Models</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Protective Cases -->
+    <div class="nav-item">
+      <a href="#"><span>Protective Cases</span><span class="nav-arrow ms" aria-label="expand_more" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg></span></a>
+      <div class="nav-mega">
+        <div class="nc">
+          <span class="nh">iPhone</span>
+          <a href="#" class="nl">iPhone 17 Pro Max</a>
+          <a href="#" class="nl">iPhone 17 Pro</a>
+          <a href="#" class="nl">iPhone 17 Air</a>
+          <a href="#" class="nl">iPhone 17</a>
+          <a href="#" class="nl">iPhone 16 Pro Max</a>
+          <a href="#" class="nl">iPhone 16 Pro</a>
+          <a href="#" class="nl">iPhone 16 Plus</a>
+          <a href="#" class="nl">iPhone 16</a>
+          <a href="#" class="nl">iPhone 15 Series</a>
+          <a href="#" class="nl">Older Models</a>
+        </div>
+        <div class="nc">
+          <span class="nh">iPad</span>
+          <a href="#" class="nl">iPad Pro 13" M5 2025</a>
+          <a href="#" class="nl">iPad Pro 11" M5 2025</a>
+          <a href="#" class="nl">iPad Air M3 2025</a>
+          <a href="#" class="nl">iPad Mini 2024</a>
+          <a href="#" class="nl">iPad 11" A16 2026</a>
+          <a href="#" class="nl">Older iPad Models</a>
+        </div>
+        <div class="nc">
+          <span class="nh">Other Devices</span>
+          <a href="#" class="nl">AirPods</a>
+          <a href="#" class="nl">Apple Watch</a>
+          <a href="#" class="nl">MacBook</a>
+          <a href="#" class="nl">Nintendo Switch</a>
+          <a href="#" class="nl">Samsung Galaxy</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Power -->
+    <div class="nav-item">
+      <a href="#" class="on"><span>Power</span><span class="nav-arrow ms" aria-label="expand_more" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg></span></a>
+      <div class="nav-mega">
+        <div class="nc">
+          <span class="nh">Cables</span>
+          <a href="#" class="nl">HDMI Cable</a>
+          <a href="#" class="nl">Lightning Cable</a>
+          <a href="#" class="nl">Universal Cable</a>
+          <a href="#" class="nl">USB-C Cable</a>
+        </div>
+        <div class="nc">
+          <span class="nh">Chargers</span>
+          <a href="#" class="nl">Car Charger</a>
+          <a href="#" class="nl">Desktop Charger</a>
+          <a href="#" class="nl">MagSafe Charger</a>
+          <a href="#" class="nl">Power Strip</a>
+          <a href="#" class="nl">Travel Charger</a>
+          <a href="#" class="nl">Wall Charger</a>
+        </div>
+        <div class="nc">
+          <span class="nh">Power Banks</span>
+          <a href="#" class="nl">MagSafe Power Bank</a>
+          <a href="#" class="nl">Standard Power Bank</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accessories -->
+    <div class="nav-item">
+      <a href="#"><span>Accessories</span><span class="nav-arrow ms" aria-label="expand_more" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg></span></a>
+      <div class="nav-mega">
+        <div class="nc">
+          <span class="nh">Gadgets</span>
+          <a href="#" class="nl">Desk Stands</a>
+          <a href="#" class="nl">Find My / GPS</a>
+          <a href="#" class="nl">Hubs &amp; Adapters</a>
+          <a href="#" class="nl">Keyboards</a>
+          <a href="#" class="nl">Lanyards</a>
+          <a href="#" class="nl">Ring Holders</a>
+          <a href="#" class="nl">Stylus Pens</a>
+        </div>
+        <div class="nc">
+          <span class="nh">Audio</span>
+          <a href="#" class="nl">Earbuds</a>
+          <a href="#" class="nl">Earphone Tips</a>
+          <a href="#" class="nl">Headphones</a>
+          <a href="#" class="nl">Wireless Speakers</a>
+        </div>
+        <div class="nc">
+          <span class="nh">Lifestyle</span>
+          <a href="#" class="nl">Apple Watch Straps</a>
+          <a href="#" class="nl">Body Scales</a>
+          <a href="#" class="nl">Fans &amp; Air Purifiers</a>
+          <a href="#" class="nl">Lamps &amp; Lights</a>
+          <a href="#" class="nl">Smart Bottles</a>
+          <a href="#" class="nl">Smart Rings</a>
+          <a href="#" class="nl">Wearables &amp; Straps</a>
+        </div>
+        <div class="nc">
+          <span class="nh">Speciality</span>
+          <a href="#" class="nl">Beauty &amp; Grooming</a>
+          <a href="#" class="nl">Crypto Wallets</a>
+          <a href="#" class="nl">Photography</a>
+          <a href="#" class="nl">Travel Kits</a>
+          <a href="#" class="nl">Wearables &amp; Straps</a>
+        </div>
+      </div>
+    </div>
+
+  </nav>
+  <div class="hdr-icons">
+    <button class="ib" aria-label="Search"><span class="ms" aria-label="search" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></span></button>
+    <button class="ib ib-acct" aria-label="Account"><span class="ms" aria-label="person" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></span></button>
+
+    <!-- Pre-Order Cart -->
+    <button class="ib ib-po" aria-label="Pre-Order Cart" onclick="togglePoCart()" id="poCartBtn" title="Pre-Order Cart">
+      <span class="ms" role="img" aria-label="preorder" style="display:flex;align-items:center;justify-content:center">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22px" height="22px" style="display:block"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+      </span>
+      <div class="po-cb" id="poBadge" style="display:none">0</div>
+      <span class="po-label">Pre-Orders</span>
+    </button>
+
+    <!-- Separator -->
+    <div style="width:1px;height:18px;background:rgba(255,255,255,.2);margin:0 2px;align-self:center"></div>
+    <!-- Regular Cart -->
+    <a href="#" class="ib" aria-label="Cart">
+      <span class="ms" aria-label="shopping_bag" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8 4c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2zm2-6c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm4 6c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2z"/></svg></span>
+      <div class="cb">3</div>
+    </a>
+  </div>
+</header>
+<div class="mdr" id="mdr">
+  <div class="mob-panels" id="mobPanels">
+
+    <!-- ── L1: Top-level categories ── -->
+    <div class="mob-panel" id="mobL1">
+      <button class="ml" onclick="mobDrill('screen-protectors')">
+        <span>Screen Protectors</span>
+        <span class="mob-arr" aria-label="chevron_right" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span>
+      </button>
+      <button class="ml" onclick="mobDrill('protective-cases')">
+        <span>Protective Cases</span>
+        <span class="mob-arr" aria-label="chevron_right" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span>
+      </button>
+      <button class="ml" onclick="mobDrill('power')">
+        <span>Power</span>
+        <span class="mob-arr" aria-label="chevron_right" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span>
+      </button>
+      <button class="ml" onclick="mobDrill('accessories')">
+        <span>Accessories</span>
+        <span class="mob-arr" aria-label="chevron_right" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span>
+      </button>
+    </div>
+
+    <!-- ── L2: Sub-category panel (content swapped by JS) ── -->
+    <div class="mob-panel" id="mobL2">
+      <div class="mob-panel-head">
+        <button class="mob-back" onclick="mobBack()">arrow_back</button>
+        <span class="mob-panel-title" id="mobL2Title">Category</span>
+      </div>
+      <div id="mobL2Body"></div>
+    </div>
+
+    <!-- L3: sub-items panel -->
+    <div class="mob-panel" id="mobL3">
+      <div class="mob-panel-head">
+        <button class="mob-back" onclick="mobBack()">arrow_back</button>
+        <span class="mob-panel-title" id="mobL3Title">Group</span>
+      </div>
+      <div id="mobL3Body"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ HERO CAROUSEL ══ -->
+<div class="hero-carousel" id="heroCarousel" style="margin-top:var(--hh);position:relative;overflow:hidden">
+
+  <!-- Slides -->
+  <div class="hc-track" id="hcTrack">
+
+    <div class="hero hc-slide" style="background:#f5f5f7">
+      <div class="hero-txt">
+        <h1 class="hero-title">MOMAX 1-Power Q.Pass2</h1>
+        <p class="hero-sub">10,000mAh · Qi2 25W Wireless</p>
+        <a href="#" class="h-btn"><span class="ms" aria-label="shopping_bag" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8 4c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2zm2-6c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm4 6c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2z"/></svg></span> Shop Now</a>
+      </div>
+      <div class="hero-img">
+        <img src="https://www.space.ae/web/image/product.image/15011/image_1024/IP163Q22M-1.png?unique=9459f9b" alt="MOMAX Q.Pass2" loading="eager" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=500&q=85&fit=crop'"/>
+      </div>
+    </div>
+
+    <div class="hero hc-slide" style="background:#eef0f9">
+      <div class="hero-txt">
+        <h1 class="hero-title">MOMAX GlastR EZ Fit</h1>
+        <p class="hero-sub">9H Tempered Glass · Self-Alignment Kit</p>
+        <a href="#" class="h-btn"><span class="ms" aria-label="shopping_bag" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8 4c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2zm2-6c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm4 6c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2z"/></svg></span> Shop Now</a>
+      </div>
+      <div class="hero-img">
+        <img src="https://www.space.ae/web/image/product.template/1581/image_1920" alt="MOMAX GlastR" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&q=85&fit=crop'"/>
+      </div>
+    </div>
+
+    <div class="hero hc-slide" style="background:#f5f5f7">
+      <div class="hero-txt">
+        <h1 class="hero-title">MOMAX Ultra Hybrid</h1>
+        <p class="hero-sub">Military Drop Protection · MagSafe</p>
+        <a href="#" class="h-btn"><span class="ms" aria-label="shopping_bag" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8 4c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2zm2-6c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm4 6c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2z"/></svg></span> Shop Now</a>
+      </div>
+      <div class="hero-img">
+        <img src="https://www.space.ae/web/image/product.template/1410/image_1920" alt="MOMAX Ultra Hybrid" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1614680376408-81e91ffe3db7?w=500&q=85&fit=crop'"/>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Prev / Next buttons -->
+  <button class="hc-btn hc-prev" onclick="heroSlide(-1)" aria-label="Previous banner">
+    <span class="ms" aria-label="chevron_left" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg></span>
+  </button>
+  <button class="hc-btn hc-next" onclick="heroSlide(1)" aria-label="Next banner">
+    <span class="ms" aria-label="chevron_right" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span>
+  </button>
+
+  <!-- Dot indicators -->
+  <div class="hc-dots" id="hcDots">
+    <button class="hc-dot on" onclick="heroGoTo(0)" aria-label="Slide 1"></button>
+    <button class="hc-dot" onclick="heroGoTo(1)" aria-label="Slide 2"></button>
+    <button class="hc-dot" onclick="heroGoTo(2)" aria-label="Slide 3"></button>
+  </div>
+
+</div>
+
+<!-- ══ SHOP BY CATEGORY ══ -->
+<section class="catsec">
+  <div class="wrap">
+    <div class="sh r" style="margin-bottom:24px">
+      <div><div class="sh-eye">Browse</div><div class="sh-title">Shop by Category</div></div>
+    </div>
+    <div class="cstrip r d1">
+      <a href="#" class="ct"><div class="c-ico"><span class="ms" aria-label="smartphone" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg></span></div><span class="c-nm">Protective<br/>Cases</span></a>
+      <a href="#" class="ct"><div class="c-ico"><span class="ms" aria-label="bolt" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z"/></svg></span></div><span class="c-nm">Power &amp;<br/>Charging</span></a>
+      <a href="#" class="ct"><div class="c-ico"><span class="ms" aria-label="currency_bitcoin" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M17.06 11.57c.59-.69.94-1.59.94-2.57 0-2.21-1.79-4-4-4h-1V3h-2v2H9V3H7v2H4v2h2v10H4v2h3v2h2v-2h2v2h2v-2h.06c2.17 0 3.94-1.77 3.94-3.94 0-1.26-.59-2.37-1.94-3.49zM9 7h5c1.1 0 2 .9 2 2s-.9 2-2 2H9V7zm5.06 10H9v-4h5.06c1.1 0 1.94.9 1.94 2s-.9 2-1.94 2z"/></svg></span></div><span class="c-nm">Crypto<br/>Wallets</span></a>
+      <a href="#" class="ct"><div class="c-ico"><span class="ms" aria-label="shield" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></span></div><span class="c-nm">Screen<br/>Protectors</span></a>
+      <a href="#" class="ct"><div class="c-ico"><span class="ms" aria-label="watch" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M20 12c0-2.54-1.19-4.81-3.04-6.27L16 0H8l-.96 5.73C5.19 7.19 4 9.46 4 12s1.19 4.81 3.04 6.27L8 24h8l.96-5.73C18.81 16.81 20 14.54 20 12zM6 12c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6-6-2.69-6-6z"/></svg></span></div><span class="c-nm">Lifestyle</span></a>
+      <a href="#" class="ct"><div class="c-ico"><span class="ms" aria-label="auto_awesome" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="m19 9 1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12zm7.5 4.5-1.25 2.75L15 18l2.75 1.25L19 22l1.25-2.75L23 18l-2.75-1.25z"/></svg></span></div><span class="c-nm">Beauty &amp;<br/>Grooming</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BEST SELLERS ══ -->
+<section class="sec pale">
+  <div class="wrap">
+    <div class="sh">
+      <div class="sh-left r"><div class="sh-eye">Most Popular</div><div class="sh-title">Best Sellers</div></div>
+      <div class="sh-right">
+        <a href="#" class="sa r d2">View All <span class="ms" aria-label="arrow_forward" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/></svg></span></a>
+        <div class="snav">
+          <button class="sarr" onclick="sRow('bsr',-1)"><span class="ms" aria-label="chevron_left" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg></span></button>
+          <button class="sarr" onclick="sRow('bsr',1)"><span class="ms" aria-label="chevron_right" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span></button>
+        </div>
+      </div>
+    </div>
+    <div class="sw"><div class="sr" id="bsr">
+
+      <a href="#" class="pc r" id="bs1">
+        <div class="pbg bp">Best Seller</div>
+        <button class="pwl" onclick="wt(event,this)"><span class="ms" aria-label="favorite" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></button>
+        <div class="pi"><img src="https://www.space.ae/web/image/product.template/1913/image_1920?unique=74dbe5a" id="bs1i" alt="MOMAX" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&q=80'"/></div>
+        <div class="pb">
+          <div class="pbrand">MOMAX</div>
+          <div class="pname">Q.MAG X1 Qi2 10000mAh MagSafe Wireless</div>
+          <div class="pspecs"><span class="pspec">10,000mAh</span><span class="pspec">Qi2</span><span class="pspec">MagSafe</span></div>
+          <div class="pcols"><div class="pcd on" style="background:#1a1a1a" title="Black" onclick="sc(event,'bs1i','https://www.space.ae/web/image/product.template/1913/image_1920?unique=74dbe5a',this,'#bs1')"></div><div class="pcd" style="background:#c8cdd6" title="Silver" onclick="sc(event,'bs1i','https://www.space.ae/web/image/product.template/1913/image_1920?unique=74dbe5a',this,'#bs1')"></div><div class="pcd" style="background:#ef6a00" title="Orange" onclick="sc(event,'bs1i','https://www.space.ae/web/image/product.template/1913/image_1920?unique=74dbe5a',this,'#bs1')"></div></div>
+          <div class="pft"><div><div class="pp">AED 349</div><div class="pw2">AED 420</div></div><button class="pa" onclick="ac(event,this)"><span class="ms" aria-label="add" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg></span></button></div>
+        </div>
+      </a>
+
+      <a href="#" class="pc r" id="bs2">
+        <div class="pbg bp">Best Seller</div>
+        <button class="pwl" onclick="wt(event,this)"><span class="ms" aria-label="favorite" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></button>
+        <div class="pi"><img src="https://www.space.ae/web/image/product.template/1581/image_1920?unique=47de8a7" id="bs2i" alt="MOMAX" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&q=80'"/></div>
+        <div class="pb">
+          <div class="pbrand">MOMAX</div>
+          <div class="pname">1-Power X Pro+ 10000mAh Magnetic Wireless with Stand</div>
+          <div class="pspecs"><span class="pspec">10,000mAh</span><span class="pspec">20W PD</span></div>
+          <div class="pcols"><div class="pcd on" style="background:#1a1a1a" title="Black" onclick="sc(event,'bs2i','https://www.space.ae/web/image/product.template/1581/image_1920?unique=47de8a7',this,'#bs2')"></div><div class="pcd" style="background:#ffffff;border:1.5px solid #ccc" title="White" onclick="sc(event,'bs2i','https://www.space.ae/web/image/product.template/1581/image_1920?unique=47de8a7',this,'#bs2')"></div></div>
+          <div class="pft"><div><div class="pp">AED 299</div></div><button class="pa" onclick="ac(event,this)"><span class="ms" aria-label="add" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg></span></button></div>
+        </div>
+      </a>
+
+      <a href="#" class="pc r" id="bs3">
+        <div class="pbg bp">Best Seller</div>
+        <button class="pwl" onclick="wt(event,this)"><span class="ms" aria-label="favorite" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></button>
+        <div class="pi"><img src="https://www.space.ae/web/image/product.template/1410/image_1920?unique=ceb2b31" id="bs3i" alt="MOMAX" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&q=80'"/></div>
+        <div class="pb">
+          <div class="pbrand">MOMAX</div>
+          <div class="pname">1-Power Flow Pro MagSafe Power Bank 5000mAh</div>
+          <div class="pspecs"><span class="pspec">5,000mAh</span><span class="pspec">MagSafe</span></div>
+          <div class="pcols"><div class="pcd on" style="background:#1a1a1a" title="Black" onclick="sc(event,'bs3i','https://www.space.ae/web/image/product.template/1410/image_1920?unique=ceb2b31',this,'#bs3')"></div><div class="pcd" style="background:#c8cdd6" title="Silver" onclick="sc(event,'bs3i','https://www.space.ae/web/image/product.template/1410/image_1920?unique=ceb2b31',this,'#bs3')"></div><div class="pcd" style="background:#ef6a00" title="Orange" onclick="sc(event,'bs3i','https://www.space.ae/web/image/product.template/1410/image_1920?unique=ceb2b31',this,'#bs3')"></div><div class="pcd" style="background:#3c4a5c" title="Navy" onclick="sc(event,'bs3i','https://www.space.ae/web/image/product.template/1410/image_1920?unique=ceb2b31',this,'#bs3')"></div></div>
+          <div class="pft"><div><div class="pp">AED 169</div><div class="pw2">AED 199</div></div><button class="pa" onclick="ac(event,this)"><span class="ms" aria-label="add" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg></span></button></div>
+        </div>
+      </a>
+
+      <a href="#" class="pc r" id="bs4">
+        <div class="pbg bp">Best Seller</div>
+        <button class="pwl" onclick="wt(event,this)"><span class="ms" aria-label="favorite" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></button>
+        <div class="pi"><img src="https://www.space.ae/web/image/product.template/216/image_1920?unique=0365c45" id="bs4i" alt="MOMAX" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&q=80'"/></div>
+        <div class="pb">
+          <div class="pbrand">MOMAX</div>
+          <div class="pname">iPower PD2 20000mAh External Power Bank</div>
+          <div class="pspecs"><span class="pspec">20,000mAh</span><span class="pspec">PD</span></div>
+          <div class="pcols"><div class="pcd on" style="background:#1a1a1a" title="Black" onclick="sc(event,'bs4i','https://www.space.ae/web/image/product.template/216/image_1920?unique=0365c45',this,'#bs4')"></div></div>
+          <div class="pft"><div><div class="pp">AED 229</div></div><button class="pa" onclick="ac(event,this)"><span class="ms" aria-label="add" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg></span></button></div>
+        </div>
+      </a>
+
+      <a href="#" class="pc r" id="bs5">
+        <div class="pbg bp">Best Seller</div>
+        <button class="pwl" onclick="wt(event,this)"><span class="ms" aria-label="favorite" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></button>
+        <div class="pi"><img src="https://www.space.ae/web/image/product.template/1501/image_1920?unique=3855f91" id="bs5i" alt="MOMAX" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&q=80'"/></div>
+        <div class="pb">
+          <div class="pbrand">MOMAX</div>
+          <div class="pname">1-Power S.Pass2 10000mAh Qi2 25W Magnetic</div>
+          <div class="pspecs"><span class="pspec">10,000mAh</span><span class="pspec">25W</span><span class="pspec">Qi2</span></div>
+          <div class="pcols"><div class="pcd on" style="background:#ef6a00" title="Orange" onclick="sc(event,'bs5i','https://www.space.ae/web/image/product.template/1501/image_1920?unique=3855f91',this,'#bs5')"></div><div class="pcd" style="background:#1a1a1a" title="Black" onclick="sc(event,'bs5i','https://www.space.ae/web/image/product.template/1501/image_1920?unique=3855f91',this,'#bs5')"></div><div class="pcd" style="background:#c8cdd6" title="Silver" onclick="sc(event,'bs5i','https://www.space.ae/web/image/product.template/1501/image_1920?unique=3855f91',this,'#bs5')"></div></div>
+          <div class="pft"><div><div class="pp">AED 349</div></div><button class="pa" onclick="ac(event,this)"><span class="ms" aria-label="add" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg></span></button></div>
+        </div>
+      </a>
+
+      <a href="#" class="pc r" id="bs6">
+        <div class="pbg bp">Best Seller</div>
+        <button class="pwl" onclick="wt(event,this)"><span class="ms" aria-label="favorite" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></button>
+        <div class="pi"><img src="https://www.space.ae/web/image/product.template/2022/image_1920?unique=3855f91" id="bs6i" alt="MOMAX" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&q=80'"/></div>
+        <div class="pb">
+          <div class="pbrand">MOMAX</div>
+          <div class="pname">1-Power Vital 20000mAh External Power Bank 20W PD</div>
+          <div class="pspecs"><span class="pspec">20,000mAh</span><span class="pspec">20W PD</span></div>
+          <div class="pcols"><div class="pcd on" style="background:#1a1a1a" title="Black" onclick="sc(event,'bs6i','https://www.space.ae/web/image/product.template/2022/image_1920?unique=3855f91',this,'#bs6')"></div><div class="pcd" style="background:#ffffff;border:1.5px solid #ccc" title="White" onclick="sc(event,'bs6i','https://www.space.ae/web/image/product.template/2022/image_1920?unique=3855f91',this,'#bs6')"></div></div>
+          <div class="pft"><div><div class="pp">AED 189</div></div><button class="pa" onclick="ac(event,this)"><span class="ms" aria-label="add" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg></span></button></div>
+        </div>
+      </a>
+
+    </div></div>
+    <div class="scroll-hint">
+      <div class="scroll-arrows">
+        <button class="scroll-arrow-btn" aria-label="Scroll left" onclick="sRow('bsr',-1)"><span class="ms" aria-label="chevron_left" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg></span></button>
+        <button class="scroll-arrow-btn" aria-label="Scroll right" onclick="sRow('bsr',1)"><span class="ms" aria-label="chevron_right" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NEW ARRIVALS ══ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sh">
+      <div class="sh-left r"><div class="sh-eye">Just Landed</div><div class="sh-title">New Arrivals</div></div>
+      <div class="sh-right">
+        <a href="#" class="sa r d2">View All <span class="ms" aria-label="arrow_forward" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/></svg></span></a>
+        <div class="snav">
+          <button class="sarr" onclick="sRow('nar',-1)"><span class="ms" aria-label="chevron_left" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg></span></button>
+          <button class="sarr" onclick="sRow('nar',1)"><span class="ms" aria-label="chevron_right" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span></button>
+        </div>
+      </div>
+    </div>
+    <div class="sw"><div class="sr" id="nar">
+
+      <a href="#" class="pc r" id="na1">
+        <div class="pbg bn">New Arrival</div>
+        <button class="pwl" onclick="wt(event,this)"><span class="ms" aria-label="favorite" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></button>
+        <div class="pi"><img src="https://www.space.ae/web/image/product.template/1913/image_1920?unique=74dbe5a" id="na1i" alt="MOMAX" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&q=80'"/></div>
+        <div class="pb">
+          <div class="pbrand">MOMAX</div>
+          <div class="pname">Q.MAG X1 Qi2 10000mAh MagSafe Wireless</div>
+          <div class="pspecs"><span class="pspec">10,000mAh</span><span class="pspec">Qi2</span><span class="pspec">MagSafe</span></div>
+          <div class="pcols"><div class="pcd on" style="background:#1a1a1a" title="Black" onclick="sc(event,'na1i','https://www.space.ae/web/image/product.template/1913/image_1920?unique=74dbe5a',this,'#na1')"></div><div class="pcd" style="background:#c8cdd6" title="Silver" onclick="sc(event,'na1i','https://www.space.ae/web/image/product.template/1913/image_1920?unique=74dbe5a',this,'#na1')"></div><div class="pcd" style="background:#ef6a00" title="Orange" onclick="sc(event,'na1i','https://www.space.ae/web/image/product.template/1913/image_1920?unique=74dbe5a',this,'#na1')"></div></div>
+          <div class="pft"><div><div class="pp">AED 349</div><div class="pw2">AED 420</div></div><button class="pa" onclick="ac(event,this)"><span class="ms" aria-label="add" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg></span></button></div>
+        </div>
+      </a>
+
+      <a href="#" class="pc r" id="na2">
+        <div class="pbg bn">New Arrival</div>
+        <button class="pwl" onclick="wt(event,this)"><span class="ms" aria-label="favorite" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></button>
+        <div class="pi"><img src="https://www.space.ae/web/image/product.template/1581/image_1920?unique=47de8a7" id="na2i" alt="MOMAX" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&q=80'"/></div>
+        <div class="pb">
+          <div class="pbrand">MOMAX</div>
+          <div class="pname">1-Power X Pro+ 10000mAh Magnetic Wireless with Stand</div>
+          <div class="pspecs"><span class="pspec">10,000mAh</span><span class="pspec">20W PD</span></div>
+          <div class="pcols"><div class="pcd on" style="background:#1a1a1a" title="Black" onclick="sc(event,'na2i','https://www.space.ae/web/image/product.template/1581/image_1920?unique=47de8a7',this,'#na2')"></div><div class="pcd" style="background:#ffffff;border:1.5px solid #ccc" title="White" onclick="sc(event,'na2i','https://www.space.ae/web/image/product.template/1581/image_1920?unique=47de8a7',this,'#na2')"></div></div>
+          <div class="pft"><div><div class="pp">AED 299</div></div><button class="pa" onclick="ac(event,this)"><span class="ms" aria-label="add" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg></span></button></div>
+        </div>
+      </a>
+
+      <a href="#" class="pc r" id="na3">
+        <div class="pbg bn">New Arrival</div>
+        <button class="pwl" onclick="wt(event,this)"><span class="ms" aria-label="favorite" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></button>
+        <div class="pi"><img src="https://www.space.ae/web/image/product.template/1410/image_1920?unique=ceb2b31" id="na3i" alt="MOMAX" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&q=80'"/></div>
+        <div class="pb">
+          <div class="pbrand">MOMAX</div>
+          <div class="pname">1-Power Flow Pro MagSafe Power Bank 5000mAh</div>
+          <div class="pspecs"><span class="pspec">5,000mAh</span><span class="pspec">MagSafe</span></div>
+          <div class="pcols"><div class="pcd on" style="background:#1a1a1a" title="Black" onclick="sc(event,'na3i','https://www.space.ae/web/image/product.template/1410/image_1920?unique=ceb2b31',this,'#na3')"></div><div class="pcd" style="background:#c8cdd6" title="Silver" onclick="sc(event,'na3i','https://www.space.ae/web/image/product.template/1410/image_1920?unique=ceb2b31',this,'#na3')"></div><div class="pcd" style="background:#ef6a00" title="Orange" onclick="sc(event,'na3i','https://www.space.ae/web/image/product.template/1410/image_1920?unique=ceb2b31',this,'#na3')"></div><div class="pcd" style="background:#3c4a5c" title="Navy" onclick="sc(event,'na3i','https://www.space.ae/web/image/product.template/1410/image_1920?unique=ceb2b31',this,'#na3')"></div></div>
+          <div class="pft"><div><div class="pp">AED 169</div><div class="pw2">AED 199</div></div><button class="pa" onclick="ac(event,this)"><span class="ms" aria-label="add" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg></span></button></div>
+        </div>
+      </a>
+
+      <a href="#" class="pc r" id="na4">
+        <div class="pbg bn">New Arrival</div>
+        <button class="pwl" onclick="wt(event,this)"><span class="ms" aria-label="favorite" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></button>
+        <div class="pi"><img src="https://www.space.ae/web/image/product.template/216/image_1920?unique=0365c45" id="na4i" alt="MOMAX" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&q=80'"/></div>
+        <div class="pb">
+          <div class="pbrand">MOMAX</div>
+          <div class="pname">iPower PD2 20000mAh External Power Bank</div>
+          <div class="pspecs"><span class="pspec">20,000mAh</span><span class="pspec">PD</span></div>
+          <div class="pcols"><div class="pcd on" style="background:#1a1a1a" title="Black" onclick="sc(event,'na4i','https://www.space.ae/web/image/product.template/216/image_1920?unique=0365c45',this,'#na4')"></div></div>
+          <div class="pft"><div><div class="pp">AED 229</div></div><button class="pa" onclick="ac(event,this)"><span class="ms" aria-label="add" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg></span></button></div>
+        </div>
+      </a>
+
+      <a href="#" class="pc r" id="na5">
+        <div class="pbg bn">New Arrival</div>
+        <button class="pwl" onclick="wt(event,this)"><span class="ms" aria-label="favorite" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></button>
+        <div class="pi"><img src="https://www.space.ae/web/image/product.template/1501/image_1920?unique=3855f91" id="na5i" alt="MOMAX" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&q=80'"/></div>
+        <div class="pb">
+          <div class="pbrand">MOMAX</div>
+          <div class="pname">1-Power S.Pass2 10000mAh Qi2 25W Magnetic</div>
+          <div class="pspecs"><span class="pspec">10,000mAh</span><span class="pspec">25W</span><span class="pspec">Qi2</span></div>
+          <div class="pcols"><div class="pcd on" style="background:#ef6a00" title="Orange" onclick="sc(event,'na5i','https://www.space.ae/web/image/product.template/1501/image_1920?unique=3855f91',this,'#na5')"></div><div class="pcd" style="background:#1a1a1a" title="Black" onclick="sc(event,'na5i','https://www.space.ae/web/image/product.template/1501/image_1920?unique=3855f91',this,'#na5')"></div><div class="pcd" style="background:#c8cdd6" title="Silver" onclick="sc(event,'na5i','https://www.space.ae/web/image/product.template/1501/image_1920?unique=3855f91',this,'#na5')"></div></div>
+          <div class="pft"><div><div class="pp">AED 349</div></div><button class="pa" onclick="ac(event,this)"><span class="ms" aria-label="add" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg></span></button></div>
+        </div>
+      </a>
+
+      <a href="#" class="pc r" id="na6">
+        <div class="pbg bn">New Arrival</div>
+        <button class="pwl" onclick="wt(event,this)"><span class="ms" aria-label="favorite" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></button>
+        <div class="pi"><img src="https://www.space.ae/web/image/product.template/2022/image_1920?unique=3855f91" id="na6i" alt="MOMAX" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&q=80'"/></div>
+        <div class="pb">
+          <div class="pbrand">MOMAX</div>
+          <div class="pname">1-Power Vital 20000mAh External Power Bank 20W PD</div>
+          <div class="pspecs"><span class="pspec">20,000mAh</span><span class="pspec">20W PD</span></div>
+          <div class="pcols"><div class="pcd on" style="background:#1a1a1a" title="Black" onclick="sc(event,'na6i','https://www.space.ae/web/image/product.template/2022/image_1920?unique=3855f91',this,'#na6')"></div><div class="pcd" style="background:#ffffff;border:1.5px solid #ccc" title="White" onclick="sc(event,'na6i','https://www.space.ae/web/image/product.template/2022/image_1920?unique=3855f91',this,'#na6')"></div></div>
+          <div class="pft"><div><div class="pp">AED 189</div></div><button class="pa" onclick="ac(event,this)"><span class="ms" aria-label="add" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg></span></button></div>
+        </div>
+      </a>
+
+    </div></div>
+    <div class="scroll-hint">
+      <div class="scroll-arrows">
+        <button class="scroll-arrow-btn" aria-label="Scroll left" onclick="sRow('nar',-1)"><span class="ms" aria-label="chevron_left" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg></span></button>
+        <button class="scroll-arrow-btn" aria-label="Scroll right" onclick="sRow('nar',1)"><span class="ms" aria-label="chevron_right" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRE-ORDERS ══ -->
+<section class="sec pale">
+  <div class="wrap">
+    <div class="sh">
+      <div class="sh-left r"><div class="sh-eye">Coming Soon</div><div class="sh-title">Pre-Orders</div></div>
+      <div class="sh-right">
+        <a href="#" class="sa r d2">View All <span class="ms" aria-label="arrow_forward" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/></svg></span></a>
+        <div class="snav">
+          <button class="sarr" onclick="sRow('por',-1)"><span class="ms" aria-label="chevron_left" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg></span></button>
+          <button class="sarr" onclick="sRow('por',1)"><span class="ms" aria-label="chevron_right" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span></button>
+        </div>
+      </div>
+    </div>
+    <div class="sw"><div class="sr" id="por">
+
+      <a href="#" class="pc r" id="po1">
+        <div class="pbg" style="background:#1d1d1f;color:#fff">Pre-Order</div>
+        <button class="pwl" onclick="wt(event,this)"><span class="ms" aria-label="favorite" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></button>
+        <div class="pi"><img src="https://www.space.ae/web/image/product.template/1913/image_1920?unique=74dbe5a" id="po1i" alt="MOMAX" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&q=80'"/></div>
+        <div class="pb">
+          <div class="pbrand">MOMAX</div>
+          <div class="pname">Q.MAG X1 Qi2 10000mAh MagSafe Wireless</div>
+          <div class="pspecs"><span class="pspec">10,000mAh</span><span class="pspec">Qi2</span><span class="pspec">MagSafe</span></div>
+          <div class="pcols"><div class="pcd on" style="background:#1a1a1a" title="Black" onclick="sc(event,'po1i','https://www.space.ae/web/image/product.template/1913/image_1920?unique=74dbe5a',this,'#po1')"></div><div class="pcd" style="background:#c8cdd6" title="Silver" onclick="sc(event,'po1i','https://www.space.ae/web/image/product.template/1913/image_1920?unique=74dbe5a',this,'#po1')"></div><div class="pcd" style="background:#ef6a00" title="Orange" onclick="sc(event,'po1i','https://www.space.ae/web/image/product.template/1913/image_1920?unique=74dbe5a',this,'#po1')"></div></div>
+          <div class="pft"><div><div class="pp">AED 349</div><div class="pw2">AED 420</div></div><button class="po-btn" onclick="ac(event,this)">Pre-order</button></div>
+        </div>
+      </a>
+
+      <a href="#" class="pc r" id="po2">
+        <div class="pbg" style="background:#1d1d1f;color:#fff">Pre-Order</div>
+        <button class="pwl" onclick="wt(event,this)"><span class="ms" aria-label="favorite" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></button>
+        <div class="pi"><img src="https://www.space.ae/web/image/product.template/1581/image_1920?unique=47de8a7" id="po2i" alt="MOMAX" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&q=80'"/></div>
+        <div class="pb">
+          <div class="pbrand">MOMAX</div>
+          <div class="pname">1-Power X Pro+ 10000mAh Magnetic Wireless with Stand</div>
+          <div class="pspecs"><span class="pspec">10,000mAh</span><span class="pspec">20W PD</span></div>
+          <div class="pcols"><div class="pcd on" style="background:#1a1a1a" title="Black" onclick="sc(event,'po2i','https://www.space.ae/web/image/product.template/1581/image_1920?unique=47de8a7',this,'#po2')"></div><div class="pcd" style="background:#ffffff;border:1.5px solid #ccc" title="White" onclick="sc(event,'po2i','https://www.space.ae/web/image/product.template/1581/image_1920?unique=47de8a7',this,'#po2')"></div></div>
+          <div class="pft"><div><div class="pp">AED 299</div></div><button class="po-btn" onclick="ac(event,this)">Pre-order</button></div>
+        </div>
+      </a>
+
+      <a href="#" class="pc r" id="po3">
+        <div class="pbg" style="background:#1d1d1f;color:#fff">Pre-Order</div>
+        <button class="pwl" onclick="wt(event,this)"><span class="ms" aria-label="favorite" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></button>
+        <div class="pi"><img src="https://www.space.ae/web/image/product.template/1410/image_1920?unique=ceb2b31" id="po3i" alt="MOMAX" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&q=80'"/></div>
+        <div class="pb">
+          <div class="pbrand">MOMAX</div>
+          <div class="pname">1-Power Flow Pro MagSafe Power Bank 5000mAh</div>
+          <div class="pspecs"><span class="pspec">5,000mAh</span><span class="pspec">MagSafe</span></div>
+          <div class="pcols"><div class="pcd on" style="background:#1a1a1a" title="Black" onclick="sc(event,'po3i','https://www.space.ae/web/image/product.template/1410/image_1920?unique=ceb2b31',this,'#po3')"></div><div class="pcd" style="background:#c8cdd6" title="Silver" onclick="sc(event,'po3i','https://www.space.ae/web/image/product.template/1410/image_1920?unique=ceb2b31',this,'#po3')"></div><div class="pcd" style="background:#ef6a00" title="Orange" onclick="sc(event,'po3i','https://www.space.ae/web/image/product.template/1410/image_1920?unique=ceb2b31',this,'#po3')"></div><div class="pcd" style="background:#3c4a5c" title="Navy" onclick="sc(event,'po3i','https://www.space.ae/web/image/product.template/1410/image_1920?unique=ceb2b31',this,'#po3')"></div></div>
+          <div class="pft"><div><div class="pp">AED 169</div><div class="pw2">AED 199</div></div><button class="po-btn" onclick="ac(event,this)">Pre-order</button></div>
+        </div>
+      </a>
+
+      <a href="#" class="pc r" id="po4">
+        <div class="pbg" style="background:#1d1d1f;color:#fff">Pre-Order</div>
+        <button class="pwl" onclick="wt(event,this)"><span class="ms" aria-label="favorite" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></button>
+        <div class="pi"><img src="https://www.space.ae/web/image/product.template/216/image_1920?unique=0365c45" id="po4i" alt="MOMAX" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&q=80'"/></div>
+        <div class="pb">
+          <div class="pbrand">MOMAX</div>
+          <div class="pname">iPower PD2 20000mAh External Power Bank</div>
+          <div class="pspecs"><span class="pspec">20,000mAh</span><span class="pspec">PD</span></div>
+          <div class="pcols"><div class="pcd on" style="background:#1a1a1a" title="Black" onclick="sc(event,'po4i','https://www.space.ae/web/image/product.template/216/image_1920?unique=0365c45',this,'#po4')"></div></div>
+          <div class="pft"><div><div class="pp">AED 229</div></div><button class="po-btn" onclick="ac(event,this)">Pre-order</button></div>
+        </div>
+      </a>
+
+      <a href="#" class="pc r" id="po5">
+        <div class="pbg" style="background:#1d1d1f;color:#fff">Pre-Order</div>
+        <button class="pwl" onclick="wt(event,this)"><span class="ms" aria-label="favorite" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></button>
+        <div class="pi"><img src="https://www.space.ae/web/image/product.template/1501/image_1920?unique=3855f91" id="po5i" alt="MOMAX" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&q=80'"/></div>
+        <div class="pb">
+          <div class="pbrand">MOMAX</div>
+          <div class="pname">1-Power S.Pass2 10000mAh Qi2 25W Magnetic</div>
+          <div class="pspecs"><span class="pspec">10,000mAh</span><span class="pspec">25W</span><span class="pspec">Qi2</span></div>
+          <div class="pcols"><div class="pcd on" style="background:#ef6a00" title="Orange" onclick="sc(event,'po5i','https://www.space.ae/web/image/product.template/1501/image_1920?unique=3855f91',this,'#po5')"></div><div class="pcd" style="background:#1a1a1a" title="Black" onclick="sc(event,'po5i','https://www.space.ae/web/image/product.template/1501/image_1920?unique=3855f91',this,'#po5')"></div><div class="pcd" style="background:#c8cdd6" title="Silver" onclick="sc(event,'po5i','https://www.space.ae/web/image/product.template/1501/image_1920?unique=3855f91',this,'#po5')"></div></div>
+          <div class="pft"><div><div class="pp">AED 349</div></div><button class="po-btn" onclick="ac(event,this)">Pre-order</button></div>
+        </div>
+      </a>
+
+      <a href="#" class="pc r" id="po6">
+        <div class="pbg" style="background:#1d1d1f;color:#fff">Pre-Order</div>
+        <button class="pwl" onclick="wt(event,this)"><span class="ms" aria-label="favorite" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span></button>
+        <div class="pi"><img src="https://www.space.ae/web/image/product.template/2022/image_1920?unique=3855f91" id="po6i" alt="MOMAX" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&q=80'"/></div>
+        <div class="pb">
+          <div class="pbrand">MOMAX</div>
+          <div class="pname">1-Power Vital 20000mAh External Power Bank 20W PD</div>
+          <div class="pspecs"><span class="pspec">20,000mAh</span><span class="pspec">20W PD</span></div>
+          <div class="pcols"><div class="pcd on" style="background:#1a1a1a" title="Black" onclick="sc(event,'po6i','https://www.space.ae/web/image/product.template/2022/image_1920?unique=3855f91',this,'#po6')"></div><div class="pcd" style="background:#ffffff;border:1.5px solid #ccc" title="White" onclick="sc(event,'po6i','https://www.space.ae/web/image/product.template/2022/image_1920?unique=3855f91',this,'#po6')"></div></div>
+          <div class="pft"><div><div class="pp">AED 189</div></div><button class="po-btn" onclick="ac(event,this)">Pre-order</button></div>
+        </div>
+      </a>
+
+    </div></div>
+    <div class="scroll-hint">
+      <div class="scroll-arrows">
+        <button class="scroll-arrow-btn" aria-label="Scroll left" onclick="sRow('por',-1)"><span class="ms" aria-label="chevron_left" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg></span></button>
+        <button class="scroll-arrow-btn" aria-label="Scroll right" onclick="sRow('por',1)"><span class="ms" aria-label="chevron_right" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COLLECTIONS & DEALS ══ -->
+<div class="ab-section">
+  <div class="ab-head r">
+    <div class="sh" style="margin-bottom:0">
+      <div class="sh-left"><div class="sh-eye">Explore</div><div class="sh-title">Collections &amp; Deals</div></div>
+    </div>
+  </div>
+  <div class="ab-grid">
+
+    <div class="ab sf r" onclick="location.href='#'">
+      <div class="ab-txt"><div class="ab-title">MOMAX 1Go Freeze</div><div class="ab-sub">Compact foldable icy cooling fan</div><button class="ab-btn" onclick="event.stopPropagation()"><span class="ms" aria-label="shopping_bag" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8 4c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2zm2-6c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm4 6c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2z"/></svg></span> Shop Now</button></div>
+      <div class="ab-img"><img src="https://www.space.ae/web/image/product.template/2488/image_1920" alt="MOMAX Cooling Fan" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400&q=85'"/></div>
+    </div>
+
+    <div class="ab sf r d1" onclick="location.href='#'">
+      <div class="ab-txt"><div class="ab-title">9H Military Glass</div><div class="ab-sub">Self-aligning · Zero bubbles · Ultra-thin 0.29mm</div><button class="ab-btn" onclick="event.stopPropagation()"><span class="ms" aria-label="shopping_bag" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8 4c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2zm2-6c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm4 6c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2z"/></svg></span> Shop Now</button></div>
+      <div class="ab-img"><img src="https://www.space.ae/web/image/product.template/1581/image_1920" alt="Screen Protector" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&q=85'"/></div>
+    </div>
+
+    <div class="ab orange-grad r" onclick="location.href='#'">
+      <div class="ab-txt"><div class="ab-title">MOMAX 1-Vibe Bottle</div><div class="ab-sub">Magnetic wireless speaker flask</div><button class="ab-btn" onclick="event.stopPropagation()"><span class="ms" aria-label="shopping_bag" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8 4c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2zm2-6c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm4 6c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2z"/></svg></span> Shop Now</button></div>
+      <div class="ab-img"><img src="https://www.space.ae/web/image/product.template/2491/image_1920" alt="MOMAX Speaker Flask" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1608751763484-08b7a2e7da5a?w=400&q=85'"/></div>
+    </div>
+
+    <div class="ab silver r d1" onclick="location.href='#'">
+      <div class="ab-txt"><div class="ab-title">MOMAX 1-Pac Pass Mini</div><div class="ab-sub">10,000mAh · 2-in-1 built-in cable battery pack</div><button class="ab-btn" onclick="event.stopPropagation()"><span class="ms" aria-label="shopping_bag" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8 4c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2zm2-6c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm4 6c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2z"/></svg></span> Shop Now</button></div>
+      <div class="ab-img"><img src="https://www.space.ae/web/image/product.template/2487/image_1920" alt="MOMAX 1-Pac Pass Mini" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400&q=85'"/></div>
+    </div>
+
+    <div class="ab crypto r d1" onclick="location.href='#'">
+      <div class="ab-txt"><div class="ab-title">Tangem Crypto Wallet</div><div class="ab-sub">Hardware wallet 2.0 · Pack of 3 cards</div><button class="ab-btn" onclick="event.stopPropagation()"><span class="ms" aria-label="shopping_bag" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8 4c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2zm2-6c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm4 6c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2z"/></svg></span> Shop Now</button></div>
+      <div class="ab-img"><img src="https://www.space.ae/web/image/product.template/1875/image_1920" alt="Tangem Crypto Wallet" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1639066648921-82d4a2dc4a3b?w=400&q=85'"/></div>
+    </div>
+
+    <div class="ab blush r d2" onclick="location.href='#'">
+      <div class="ab-txt"><div class="ab-title">MOMAX 1-Care Velo</div><div class="ab-sub">Universal voltage hair dryer</div><button class="ab-btn" onclick="event.stopPropagation()"><span class="ms" aria-label="shopping_bag" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8 4c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2zm2-6c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm4 6c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2z"/></svg></span> Shop Now</button></div>
+      <div class="ab-img"><img src="https://www.space.ae/web/image/product.template/2453/image_1920" alt="MOMAX 1-Care Velo Hair Dryer" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&q=85'"/></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="space-about.html">About Us</a></li>
+          <li><a href="space-warriors.html">Space Warriors</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">My Account</a></li>
+          <li><a href="space-b2b-signup.html">B2B Partners</a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">Warranty</a></li>
+        </ul>
+      </div>
+      <div class="footer-col" style="grid-column:span 2">
+        <h4>Subscribe to Newsletter</h4>
+        <p style="font-size:.58rem;color:rgba(255,255,255,.6);margin-bottom:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;">Get the latest deals and product drops.</p>
+        <div class="newsletter-input-row">
+          <input class="newsletter-input" type="email" placeholder="Your email address"/>
+          <button class="newsletter-btn" onclick="this.textContent='✓ Joined!'">Join</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="social-row">
+        <a class="social-link" href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+        </a>
+        <a class="social-link" href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.607.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.063 1.365-.333 2.632-1.308 3.607-.975.975-2.242 1.246-3.607 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.245-2.242-1.308-3.607-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.245 3.607-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.337 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.337-.2 6.78-2.618 6.98-6.98.058-1.281.072-1.689.072-4.948s-.014-3.667-.072-4.947c-.2-4.337-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a class="social-link" href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </a>
+      </div>
+      <span class="foot-copy">&copy; 2026 Space Global. All rights reserved.</span>
+      <div class="foot-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ══ PRE-ORDER CART DRAWER ══ -->
+<div class="po-drawer-overlay" id="poOverlay" onclick="togglePoCart()"></div>
+<div class="po-drawer" id="poDrawer">
+
+  <!-- Head -->
+  <div class="po-head">
+    <div class="po-head-left">
+      <div class="po-head-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg></div>
+      <div>
+        <div class="po-head-title">Pre-Order Cart</div>
+        <div class="po-head-count" id="poHeadCount">0 items</div>
+      </div>
+    </div>
+    <button class="po-close" onclick="togglePoCart()" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg></button>
+  </div>
+
+  <!-- Info banner -->
+  <div class="po-info">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+    <div class="po-info-txt">
+      <strong>Out-of-stock items</strong> are held here. We'll notify you when they're available and charge you only at dispatch.
+    </div>
+  </div>
+
+  <!-- Items -->
+  <div class="po-items" id="poItems">
+    <!-- Empty state (shown by default) -->
+    <div class="po-empty" id="poEmpty">
+      <div class="po-empty-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg></div>
+      <div class="po-empty-title">No pre-orders yet</div>
+      <div class="po-empty-sub">Out-of-stock items will appear here automatically when you add them.</div>
+    </div>
+  </div>
+
+  <!-- Footer (hidden when empty) -->
+  <div class="po-footer" id="poFooter" style="display:none">
+    <div class="po-subtotal">
+      <span class="po-subtotal-label">Subtotal</span>
+      <span class="po-subtotal-price" id="poTotal">AED 0</span>
+    </div>
+    <button class="po-checkout" onclick="poCheckout()">Place Pre-Order</button>
+    <p class="po-note">You won't be charged until your items are ready to ship.</p>
+  </div>
+
+</div>
+
+<script>
+function toggleMenu(){
+  const d=document.getElementById('mdr'),i=document.getElementById('mico');
+  const o=d.classList.toggle('open');
+  i.innerHTML=o?'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>':'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>';
+  document.body.style.overflow=o?'hidden':'';
+  if(!o){
+    const p=document.getElementById('mobPanels');
+    p.classList.remove('show-l2','show-l3');
+  }
+}
+function sRow(id,dir){
+  const r=document.getElementById(id);if(!r)return;
+  const c=r.querySelector('.pc');if(!c)return;
+  r.scrollBy({left:dir*(c.offsetWidth+8)*2,behavior:'smooth'});
+}
+function sc(e,iid,src,dot,csel){
+  e.preventDefault();e.stopPropagation();
+  const img=document.getElementById(iid);
+  if(img){img.style.transition='opacity .14s';img.style.opacity='0';setTimeout(()=>{img.src=src;img.style.opacity='1'},140)}
+  const card=document.querySelector(csel);
+  if(card){
+    card.querySelectorAll('.pcd').forEach(d=>{d.classList.remove('on');d.style.boxShadow='';});
+    dot.classList.add('on');
+  }
+}
+function reveal(){
+  document.querySelectorAll('.r:not(.in)').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight*.95)el.classList.add('in');
+  });
+}
+window.addEventListener('scroll',reveal,{passive:true});
+window.addEventListener('resize',reveal,{passive:true});
+requestAnimationFrame(()=>setTimeout(reveal,80));
+function wt(e,btn){
+  e.preventDefault();e.stopPropagation();
+  const ic=btn.querySelector('.ms'),on=btn.classList.toggle('active');
+  ic.style.fontVariationSettings=on?"'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24":"'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24";
+  ic.style.color=on?'#e53935':'';btn.style.borderColor=on?'#e53935':'';
+}
+function ac(e,btn){
+  e.preventDefault();e.stopPropagation();
+  const ic=btn.querySelector('.ms');
+  const isPO=btn.classList.contains('po-btn');
+  const orig=ic?ic.textContent:(isPO?'Pre-order':'');
+  if(ic){ic.textContent='check';btn.style.background='#059669';btn.style.borderColor='#059669';btn.style.color='white'}
+  else{btn.textContent='✓';btn.style.background='#059669';btn.style.color='white';btn.style.borderColor='#059669'}
+  setTimeout(()=>{
+    if(ic){ic.textContent=orig;btn.style.background='';btn.style.borderColor='';btn.style.color=''}
+    else{btn.textContent=isPO?'Pre-order':orig;btn.style.background='';btn.style.color='';btn.style.borderColor=''}
+  },1400);
+}
+/* ── Hero Carousel ── */
+let hcIdx=0;
+const hcSlides=document.querySelectorAll('.hc-slide');
+const hcTrack=document.getElementById('hcTrack');
+const hcDots=document.querySelectorAll('.hc-dot');
+let hcAuto;
+function heroGoTo(n){
+  hcIdx=(n+hcSlides.length)%hcSlides.length;
+  if(hcTrack)hcTrack.style.transform='translateX(-'+hcIdx*100+'%)';
+  hcDots.forEach((d,i)=>d.classList.toggle('on',i===hcIdx));
+  resetAuto();
+}
+function heroSlide(d){heroGoTo(hcIdx+d)}
+function resetAuto(){clearInterval(hcAuto);hcAuto=setInterval(()=>heroSlide(1),5000)}
+resetAuto();
+const hcEl=document.getElementById('heroCarousel');
+if(hcEl){
+  let hcX=0;
+  hcEl.addEventListener('touchstart',e=>{hcX=e.touches[0].clientX},{passive:true});
+  hcEl.addEventListener('touchend',e=>{const dx=hcX-e.changedTouches[0].clientX;if(Math.abs(dx)>40)heroSlide(dx>0?1:-1)},{passive:true});
+}
+/* ── Mobile nav drill-down ── */
+const MOB_NAV = {
+  'screen-protectors':{title:'Screen Protectors',groups:[
+    {heading:'iPhone',links:['iPhone 17 Pro Max','iPhone 17 Pro','iPhone 17 Air','iPhone 17','iPhone 16 Pro Max','iPhone 16 Pro','iPhone 16 Plus','iPhone 16','iPhone 15 Series','Older Models']},
+    {heading:'iPad',links:['iPad Pro 13" M5 2025','iPad Pro 11" M5 2025','iPad Air M3 2025','iPad Mini 2024','iPad 11" A16 2026','Older iPad Models']},
+    {heading:'Other Devices',links:['Apple Watch','MacBook','Nintendo Switch','Samsung Galaxy','Tesla']},
+    {heading:'Lens Protectors',links:['iPhone 17 Pro Max','iPhone 17 Pro','iPhone 17 Air','iPhone 17','iPhone 16 Pro Max','iPhone 16 Pro','iPhone 16 Plus','iPhone 16','iPhone 15 Series','Older Models']},
+  ]},
+  'protective-cases':{title:'Protective Cases',groups:[
+    {heading:'iPhone',links:['iPhone 17 Pro Max','iPhone 17 Pro','iPhone 17 Air','iPhone 17','iPhone 16 Pro Max','iPhone 16 Pro','iPhone 16 Plus','iPhone 16','iPhone 15 Series','Older Models']},
+    {heading:'iPad',links:['iPad Pro 13" M5 2025','iPad Pro 11" M5 2025','iPad Air M3 2025','iPad Mini 2024','iPad 11" A16 2026','Older iPad Models']},
+    {heading:'Other Devices',links:['AirPods','Apple Watch','MacBook','Nintendo Switch','Samsung Galaxy']},
+  ]},
+  'power':{title:'Power',groups:[
+    {heading:'Cables',links:['HDMI Cable','Lightning Cable','Universal Cable','USB-C Cable']},
+    {heading:'Chargers',links:['Car Charger','Desktop Charger','MagSafe Charger','Power Strip','Travel Charger','Wall Charger']},
+    {heading:'Power Banks',links:['MagSafe Power Bank','Standard Power Bank']},
+  ]},
+  'accessories':{title:'Accessories',groups:[
+    {heading:'Gadgets',links:['Desk Stands','Find My / GPS','Hubs & Adapters','Keyboards','Lanyards','Ring Holders','Stylus Pens']},
+    {heading:'Audio',links:['Earbuds','Earphone Tips','Headphones','Wireless Speakers']},
+    {heading:'Lifestyle',links:['Apple Watch Straps','Body Scales','Fans & Air Purifiers','Lamps & Lights','Smart Bottles','Smart Rings','Wearables & Straps']},
+    {heading:'Speciality',links:['Beauty & Grooming','Crypto Wallets','Photography','Travel Kits']},
+  ]},
+};
+/* ── 3-level mobile nav ── */
+/* ── Mobile 3-level nav ── */
+let _mobCurrentKey='';
+let _mobGroups=[];
+
+function mobDrill(key){
+  const data=MOB_NAV[key];
+  if(!data) return;
+  _mobCurrentKey=key;
+  _mobGroups=data.groups;
+  document.getElementById('mobL2Title').textContent=data.title;
+  const body=document.getElementById('mobL2Body');
+  let html='';
+  data.groups.forEach(function(g,i){
+    html+='<button class="ml" data-idx="'+i+'" onclick="mobDrillIdx('+i+')" style="width:100%;text-align:left">'
+        +'<span>'+g.heading+'</span>'
+        +'<span class="mob-arr" aria-label="chevron_right" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span>'
+        +'</button>';
+  });
+  body.innerHTML=html;
+  mobAnimate(body);
+  const panels=document.getElementById('mobPanels');
+  panels.classList.remove('show-l3');
+  panels.classList.add('show-l2');
+}
+
+function mobDrillIdx(idx){
+  const group=_mobGroups[idx];
+  if(!group) return;
+  document.getElementById('mobL3Title').textContent=group.heading;
+  const body=document.getElementById('mobL3Body');
+  let html='';
+  group.links.forEach(function(l){
+    html+='<a href="#" class="ml-sub">'+l+'</a>';
+  });
+  body.innerHTML=html;
+  mobAnimate(body);
+  document.getElementById('mobPanels').classList.add('show-l3');
+}
+
+function mobAnimate(el){
+  el.style.opacity='0';
+  el.style.transform='translateX(18px)';
+  el.style.transition='none';
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      el.style.transition='opacity .28s cubic-bezier(.4,0,.2,1), transform .3s cubic-bezier(.4,0,.2,1)';
+      el.style.opacity='1';
+      el.style.transform='translateX(0)';
+    });
+  });
+}
+
+function mobBack(){
+  const p=document.getElementById('mobPanels');
+  if(p.classList.contains('show-l3')){
+    p.classList.remove('show-l3');
+  } else {
+    p.classList.remove('show-l2');
+  }
+}
+
+/* ── Pre-Order Cart ── */
+const _poCart = [];
+
+function togglePoCart(){
+  const drawer = document.getElementById('poDrawer');
+  const overlay = document.getElementById('poOverlay');
+  const isOpen = drawer.classList.contains('open');
+  if(isOpen){
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  } else {
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function addToPoCart(product){
+  // Check if already in cart
+  const existing = _poCart.find(p => p.id === product.id);
+  if(existing){ existing.qty = (existing.qty||1) + 1; }
+  else { _poCart.push({...product, qty:1}); }
+  renderPoCart();
+  // Flash the badge
+  const badge = document.getElementById('poBadge');
+  badge.style.transform = 'scale(1.4)';
+  setTimeout(() => badge.style.transform = '', 300);
+  // Auto-open drawer on first add
+  if(_poCart.length === 1){ togglePoCart(); }
+}
+
+function removeFromPoCart(id){
+  const idx = _poCart.findIndex(p => p.id === id);
+  if(idx > -1){ _poCart.splice(idx, 1); }
+  renderPoCart();
+}
+
+function renderPoCart(){
+  const badge = document.getElementById('poBadge');
+  const count = document.getElementById('poHeadCount');
+  const items = document.getElementById('poItems');
+  const empty = document.getElementById('poEmpty');
+  const footer = document.getElementById('poFooter');
+  const total = document.getElementById('poTotal');
+
+  const totalItems = _poCart.reduce((s,p) => s+(p.qty||1), 0);
+  const totalPrice = _poCart.reduce((s,p) => s+(parseFloat(p.price||0)*(p.qty||1)), 0);
+
+  // Badge
+  if(totalItems > 0){
+    badge.textContent = totalItems > 99 ? '99+' : totalItems;
+    badge.style.display = 'flex';
+  } else {
+    badge.style.display = 'none';
+  }
+  count.textContent = totalItems + (totalItems === 1 ? ' item' : ' items');
+
+  // Render items
+  if(_poCart.length === 0){
+    empty.style.display = '';
+    footer.style.display = 'none';
+    items.innerHTML = '';
+    items.appendChild(empty);
+    return;
+  }
+
+  empty.style.display = 'none';
+  footer.style.display = '';
+  total.textContent = 'AED ' + totalPrice.toFixed(0);
+
+  var html = '';
+  _poCart.forEach(function(p){
+    var pid = String(p.id).replace(/'/g, "");
+    html += "<div class='po-item' id='poi-" + pid + "'>";
+    html += "<div class='po-item-img'>";
+    html += "<img src='" + (p.img || "") + "' alt='" + (p.name || "") + "' loading='lazy'/>";
+    html += "</div>";
+    html += "<div class='po-item-info'>";
+    html += "<div class='po-item-brand'>" + (p.brand || "SPACE") + "</div>";
+    html += "<div class='po-item-name'>" + (p.name || "Product") + "</div>";
+    html += "<div class='po-item-footer'>";
+    html += "<span class='po-item-price'>AED " + (p.price || 0) + " \u00d7 " + (p.qty || 1) + "</span>";
+    html += "<span class='po-item-badge'>Pre-Order</span>";
+    html += "</div></div>";
+    html += "<button class='po-item-remove' onclick=\"removeFromPoCart('" + pid + "')\" aria-label='Remove'>";
+    html += "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4h-3.5z'/></svg>";
+    html += "</button></div>";
+  });
+  items.innerHTML = html;
+}
+
+function poCheckout(){
+  if(_poCart.length === 0) return;
+  // In production this would redirect to Odoo checkout with pre-order flag
+  alert('Pre-order checkout: ' + _poCart.length + ' item(s) — AED ' +
+    _poCart.reduce((s,p) => s+(parseFloat(p.price||0)*(p.qty||1)),0).toFixed(0));
+}
+
+/* Hook pre-order button clicks on product cards */
+document.addEventListener('click', function(e){
+  const btn = e.target.closest('.po-btn');
+  if(!btn) return;
+  e.preventDefault(); e.stopPropagation();
+  const card = btn.closest('.pc');
+  if(!card) return;
+  const pid = card.id;
+  const img = card.querySelector('.pi img');
+  const name = card.querySelector('.pname');
+  const brand = card.querySelector('.pbrand');
+  const price = card.querySelector('.pp');
+  addToPoCart({
+    id: pid,
+    name: name ? name.textContent : 'Product',
+    brand: brand ? brand.textContent : 'MOMAX',
+    price: price ? price.textContent.replace(/[^0-9.]/g,'') : '0',
+    img: img ? img.src : ''
+  });
+  // Visual feedback on button
+  btn.textContent = '✓ Added';
+  btn.style.background = 'var(--ac)';
+  btn.style.color = '#fff';
+  btn.style.borderColor = 'var(--ac)';
+  setTimeout(() => {
+    btn.textContent = 'Pre-order';
+    btn.style.background = '';
+    btn.style.color = '';
+    btn.style.borderColor = '';
+  }, 1400);
+});
+
+</script>
+<script>
+// Failsafe: guarantee content visibility even if later JS errors
+setTimeout(function(){
+  document.querySelectorAll('.r:not(.in)').forEach(function(el){el.classList.add('in')});
+}, 1500);
+</script>
+</body>
+</html>

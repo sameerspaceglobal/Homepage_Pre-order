@@ -163,6 +163,10 @@
 
   /* Icon buttons */
   .hdr-icons{display:flex;align-items:center;gap:2px;flex-shrink:0;margin-left:auto}
+  @media(min-width:768px){
+    .hdr-icons{gap:6px}
+    .ib-acct{order:10;margin-left:6px}
+  }
   .ib{
     background:none;border:none;cursor:pointer;color:#fff;
     display:flex;align-items:center;justify-content:center;
@@ -232,6 +236,12 @@
   .mob-divider{
     height:1px;background:rgba(255,255,255,.1);
     margin:4px 24px 8px;
+  }
+
+
+  /* Mobile: search sits next to burger on the left */
+  @media(max-width:767px){
+    .ib-search-m{order:-1;margin-left:2px}
   }
 
   .mdr{
@@ -1058,26 +1068,7 @@
 
   /* Safe area for notched phones (iPhone, Android) */
   @supports(padding:max(0px)){
-  
-  /* Mobile drawer account row */
-  .mob-account{
-    text-decoration:none;
-    background:rgba(255,255,255,.06)!important;
-  }
-  .mob-account:active{background:rgba(255,255,255,.12)!important}
-  .mob-acct-icon{
-    width:32px;height:32px;border-radius:50%;
-    background:var(--ac);
-    display:flex;align-items:center;justify-content:center;
-    flex-shrink:0;
-  }
-  .mob-acct-icon svg{width:18px;height:18px;fill:#fff}
-  .mob-divider{
-    height:1px;background:rgba(255,255,255,.1);
-    margin:4px 24px 8px;
-  }
-
-  .mdr{bottom:env(safe-area-inset-bottom,0px)}
+    .mdr{bottom:env(safe-area-inset-bottom,0px)}
     footer{padding-bottom:max(24px,env(safe-area-inset-bottom))}
   }
 
@@ -1440,7 +1431,7 @@
 
   </nav>
   <div class="hdr-icons">
-    <button class="ib" aria-label="Search"><span class="ms" aria-label="search" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></span></button>
+    <button class="ib ib-search-m" aria-label="Search"><span class="ms" aria-label="search" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></span></button>
     <button class="ib ib-acct" aria-label="Account"><span class="ms" aria-label="person" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></span></button>
 
     <!-- Pre-Order Cart -->
@@ -1466,15 +1457,6 @@
 
     <!-- ── L1: Top-level categories ── -->
     <div class="mob-panel" id="mobL1">
-      <!-- Account / Login row -->
-      <a href="#" class="ml mob-account">
-        <span style="display:flex;align-items:center;gap:12px">
-          <span class="mob-acct-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="display:block"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></span>
-          <span>Login / Register</span>
-        </span>
-        <span class="mob-arr" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span>
-      </a>
-      <div class="mob-divider"></div>
       <button class="ml" onclick="mobDrill('screen-protectors')">
         <span>Screen Protectors</span>
         <span class="mob-arr" aria-label="chevron_right" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span>
@@ -1491,6 +1473,16 @@
         <span>Accessories</span>
         <span class="mob-arr" aria-label="chevron_right" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span>
       </button>
+
+      <!-- Account / Login row — at bottom -->
+      <div class="mob-divider"></div>
+      <a href="#" class="ml mob-account">
+        <span style="display:flex;align-items:center;gap:12px">
+          <span class="mob-acct-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="display:block"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></span>
+          <span>Login / Register</span>
+        </span>
+        <span class="mob-arr" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span>
+      </a>
     </div>
 
     <!-- ── L2: Sub-category panel (content swapped by JS) ── -->

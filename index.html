@@ -181,6 +181,7 @@
   }
   /* Account icon — hide on mobile */
   .ib-acct{display:flex}
+  @media(max-width:767px){.ib-acct{display:none!important}}
   /* Burger — hide on desktop */
   .ib-burger{display:flex;order:-1;margin-right:0;margin-left:0}
   @media(min-width:768px){.ib-burger{display:none!important}}
@@ -213,6 +214,25 @@
     font-family:var(--fd);
   }
   .dl:hover{color:var(--pr);padding-left:4px}
+
+
+  /* Mobile drawer account row */
+  .mob-account{
+    text-decoration:none;
+    background:rgba(255,255,255,.06)!important;
+  }
+  .mob-account:active{background:rgba(255,255,255,.12)!important}
+  .mob-acct-icon{
+    width:32px;height:32px;border-radius:50%;
+    background:var(--ac);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .mob-acct-icon svg{width:18px;height:18px;fill:#fff}
+  .mob-divider{
+    height:1px;background:rgba(255,255,255,.1);
+    margin:4px 24px 8px;
+  }
 
   .mdr{
     position:fixed;
@@ -1038,7 +1058,26 @@
 
   /* Safe area for notched phones (iPhone, Android) */
   @supports(padding:max(0px)){
-    .mdr{bottom:env(safe-area-inset-bottom,0px)}
+  
+  /* Mobile drawer account row */
+  .mob-account{
+    text-decoration:none;
+    background:rgba(255,255,255,.06)!important;
+  }
+  .mob-account:active{background:rgba(255,255,255,.12)!important}
+  .mob-acct-icon{
+    width:32px;height:32px;border-radius:50%;
+    background:var(--ac);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .mob-acct-icon svg{width:18px;height:18px;fill:#fff}
+  .mob-divider{
+    height:1px;background:rgba(255,255,255,.1);
+    margin:4px 24px 8px;
+  }
+
+  .mdr{bottom:env(safe-area-inset-bottom,0px)}
     footer{padding-bottom:max(24px,env(safe-area-inset-bottom))}
   }
 
@@ -1427,6 +1466,15 @@
 
     <!-- ── L1: Top-level categories ── -->
     <div class="mob-panel" id="mobL1">
+      <!-- Account / Login row -->
+      <a href="#" class="ml mob-account">
+        <span style="display:flex;align-items:center;gap:12px">
+          <span class="mob-acct-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="display:block"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></span>
+          <span>Login / Register</span>
+        </span>
+        <span class="mob-arr" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span>
+      </a>
+      <div class="mob-divider"></div>
       <button class="ml" onclick="mobDrill('screen-protectors')">
         <span>Screen Protectors</span>
         <span class="mob-arr" aria-label="chevron_right" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:block"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span>
@@ -1448,7 +1496,7 @@
     <!-- ── L2: Sub-category panel (content swapped by JS) ── -->
     <div class="mob-panel" id="mobL2">
       <div class="mob-panel-head">
-        <button class="mob-back" onclick="mobBack()">arrow_back</button>
+        <button class="mob-back" onclick="mobBack()" aria-label="Back"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="display:block"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button>
         <span class="mob-panel-title" id="mobL2Title">Category</span>
       </div>
       <div id="mobL2Body"></div>
@@ -1457,7 +1505,7 @@
     <!-- L3: sub-items panel -->
     <div class="mob-panel" id="mobL3">
       <div class="mob-panel-head">
-        <button class="mob-back" onclick="mobBack()">arrow_back</button>
+        <button class="mob-back" onclick="mobBack()" aria-label="Back"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="display:block"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button>
         <span class="mob-panel-title" id="mobL3Title">Group</span>
       </div>
       <div id="mobL3Body"></div>
